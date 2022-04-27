@@ -1,0 +1,6 @@
+query ValidateUser($userid: String!)
+ { 
+  ValidateUser(userid: $userid){
+    validUser
+  }
+}

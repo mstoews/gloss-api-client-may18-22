@@ -1,0 +1,20 @@
+.content {
+  overflow: hidden;
+  height: auto;
+  padding: 10px;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 95%;
+  font-size: large;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  background-color: solid #42a948;
+}
+
+.ng-invalid:not(form) {
+  background-color: solid #42a948;
+}
