@@ -19,17 +19,18 @@
   
     label {
       color: white;
-      width: 183px;
+      width: 100%;
       height: 44px;
+      font-size: 20px;
       border-radius: 21.5px;
       background-color: var(--primary-color);
-      padding: 8px 16px;
+      padding: 8px 16px 2px 2px;
     }
   
     h3 {
       font-size: 20px;
       font-weight: 600;
-      color: #38424c;
+      color: #08213a;
     }
   }
   
@@ -78,6 +79,10 @@
         width: 100%
       }
     }
+  }
+
+  .mat-dialog-actions {
+    margin: 1px;
   }
   
   /* Shake animation */

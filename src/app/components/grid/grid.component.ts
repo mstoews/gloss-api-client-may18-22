@@ -20,17 +20,22 @@ import { DndComponent } from './dnd/dnd.component';
     <div *ngIf="showBar === true">
       <mat-toolbar>
         <span class="fill-space">
-          <button
+        <button
             mat-flat-button
             (click)="onBtnExport()"
-            matTooltip="Download JSON"
-          >
-            <mat-icon [svgIcon]="'heroicons_outline:download'"> </mat-icon>
+            matTooltip="Download JSON">
+            <mat-icon [svgIcon]="'mat_outline:download'"> </mat-icon>
+          </button>
+          <button
+            mat-flat-button
+            (click)="onBtnImport()"
+            matTooltip="Upload XML Party">
+            <mat-icon [svgIcon]="'heroicons_outline:external-link'"> </mat-icon>
           </button>
         </span>
         <span>
           <button #selectFile mat-flat-button matTooltip="Upload JSON">
-            <mat-icon [svgIcon]="'heroicons_outline:upload'"></mat-icon></button
+            <mat-icon [svgIcon]="'mat_outline:upload'"></mat-icon></button
         ></span>
         <span><input type="file" (change)="onFileSelect($event)" /> </span>
       </mat-toolbar>
@@ -60,6 +65,7 @@ import { DndComponent } from './dnd/dnd.component';
     <mat-progress-spinner mode="determinate" [value]="progress">
     </mat-progress-spinner>
   `,
+   styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent implements OnInit {
   frameworkComponents;
@@ -207,12 +213,12 @@ export class GridComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       //  console.log ('Just before update', result.data);
+      if (result === undefined) {
+          result = { event: 'Cancel' };
+      }
       switch (result.event) {
         case 'Create':
           this.create(result.data);
-          break;
-        case 'Update':
-          this.update(result.data);
           break;
         case 'Cancel':
           break;
@@ -220,7 +226,11 @@ export class GridComponent implements OnInit {
     });
   }
 
-  create(data: any) {}
+  create(data: any) {
+    console.log(`Create`);
+  }
 
-  update(data: any) {}
+  update(data: any) {
+    console.log(`Cancel`);
+  }
 }

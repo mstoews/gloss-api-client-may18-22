@@ -85,6 +85,7 @@ export class PartyTypeComponent implements OnInit {
   delete(data) {
     this.partyService.deletePartyTree(data.party_ref).subscribe({
       next: (val) => {
+        this.updateData();
         this.snackService.showMessage(
           'Party ' + val.data.deletePartyTree.party_ref + ' has been deleted.'
         );

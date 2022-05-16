@@ -2,7 +2,7 @@
 $Broadridge_Blue: #00578e;
 
 .kanban_title {
-  height: 3rem;
+  height: 4rem;
   padding: 4px;
   border-left: solid 6px $Broadridge_Blue;
   color: white;
@@ -15,6 +15,7 @@ $Broadridge_Blue: #00578e;
   cursor: move;
   font-size: 16px;
   margin: 1px;
+  text-transform: uppercase;
 
   &__heading {
     font-size: 1rem;
@@ -46,10 +47,21 @@ $Broadridge_Blue: #00578e;
     font-size: 30px;
     background-color: rgba(0, 26, 255, 0.87);
 
-    &--1 { background: rgb(245, 246, 250); }
-    &--2 { background: rgb(245, 246, 250); }
-    &--3 { background: rgb(245, 246, 250);}
-    &--4 { background: rgb(245, 246, 250); }
+    &--1 {
+      background: rgb(245, 246, 250);
+    }
+
+    &--2 {
+      background: rgb(245, 246, 250);
+    }
+
+    &--3 {
+      background: rgb(245, 246, 250);
+    }
+
+    &--4 {
+      background: rgb(245, 246, 250);
+    }
   }
 }
 
@@ -70,11 +82,11 @@ $Broadridge_Blue: #00578e;
   padding: 0.5rem;
 }
 
-// .cdk-drag-preview {
-//   box-sizing: border-box;
-//   border-radius: 4px;
-//   box-shadow: 8px 8px 10px 1px rgba(155, 34, 34, 0.14)
-// }
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 8px 8px 10px 1px rgba(155, 34, 34, 0.14)
+}
 
 .cdk-drag-placeholder {
   opacity: 0;

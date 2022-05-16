@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: 'introduction',
     component: IntroComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
    path: 'kanban',
@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'static',
     loadChildren: () =>
       import('./static/static.data.module').then((m) => m.StaticDataModule),
-     canActivate: [AuthGuard],
+     // canActivate: [AuthGuard],
   },
   {
     path: 'user',

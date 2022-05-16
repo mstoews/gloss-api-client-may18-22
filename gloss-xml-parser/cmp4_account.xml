@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pa:PartyAccount xmlns:p="broadridge:spsi:gloss:Party" xmlns:pa="broadridge:spsi:gloss:PartyAccount" xmlns:c="broadridge:spsi:gloss:Common">
+    <pa:Origin>GLOSS</pa:Origin>
+    <pa:OriginVersion>1592938105976</pa:OriginVersion>
+    <pa:OriginReference>CMP4^JPY CASH</pa:OriginReference>
+    <pa:PartyReference>
+        <c:Type>INT</c:Type>
+        <c:Value>CMP4</c:Value>
+    </pa:PartyReference>
+    <pa:PartyAccount>
+        <p:Alias>JPY CASH</p:Alias>
+        <p:Description>JPY CASH</p:Description>
+        <p:Type>Nostro</p:Type>
+        <p:CommService>
+            <c:Type>INT</c:Type>
+            <c:Value>JASDEC</c:Value>
+        </p:CommService>
+        <p:DepotAccount>
+            <c:Type>INT</c:Type>
+            <c:Value>JPY CASH</c:Value>
+        </p:DepotAccount>
+        <p:AccountNumber>
+            <p:Number>2345001</p:Number>
+        </p:AccountNumber>
+        <p:AccountName>JPY CASH</p:AccountName>
+        <p:Location>
+            <c:Type>INT</c:Type>
+            <c:Value>BRSCJPJT</c:Value>
+        </p:Location>
+        <p:EffectiveFrom>1900-01-01</p:EffectiveFrom>
+        <p:EffectiveTo>9999-12-31</p:EffectiveTo>
+        <p:ParentSSI>false</p:ParentSSI>
+        <p:Inactive>false</p:Inactive>
+        <p:Verify>false</p:Verify>
+    </pa:PartyAccount>
+    <pa:Type>COMP</pa:Type>
+    <pa:Reference>
+        <c:Type>INT</c:Type>
+        <p:Reference>CMP4</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>BIC</c:Type>
+        <p:Reference>BRSCJPJT</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>BIC8</c:Type>
+        <p:Reference>BRSCJPJT</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>ABJJ</c:Type>
+        <p:Reference>BRSCJPJT</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>ABJN</c:Type>
+        <p:Reference>BRSCJPJT</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>BOJ</c:Type>
+        <p:Reference>12345</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>GLDB</c:Type>
+        <p:Reference>CMP4</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>GPID</c:Type>
+        <p:Reference>CMP4</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>JGNA</c:Type>
+        <p:Reference>BRSCJPJT001X</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>JSD</c:Type>
+        <p:Reference>12345</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>JSDA</c:Type>
+        <p:Reference>0655</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>LEDG</c:Type>
+        <p:Reference>CMP4</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>OSE</c:Type>
+        <p:Reference>12345</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>PREF</c:Type>
+        <p:Reference>BRSECJAPAN</p:Reference>
+    </pa:Reference>
+    <pa:Reference>
+        <c:Type>TSE</c:Type>
+        <p:Reference>12345</p:Reference>
+    </pa:Reference>
+</pa:PartyAccount>

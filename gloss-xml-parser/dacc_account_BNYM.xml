@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:Party xmlns:p="broadridge:spsi:gloss:Party" xmlns:pa="broadridge:spsi:gloss:PartyAccount" xmlns:pc="broadridge:spsi:gloss:Configuration" xmlns:c="broadridge:spsi:gloss:Common">
+    <p:Type>DACC</p:Type>
+    <p:Origin>TE-PARTY</p:Origin>
+    <p:OriginReference>BNY NY CLT</p:OriginReference>
+    <p:OriginVersion>1615864206104</p:OriginVersion>
+    <p:DefaultTimeZone>Asia/Tokyo</p:DefaultTimeZone>
+    <p:Name>BNY NY CLT</p:Name>
+    <p:LongName>BNY NY CLIENT</p:LongName>
+    <p:ExtraLongName>BNY NY CLIENT SEGREGATED</p:ExtraLongName>
+    <p:Inactive>false</p:Inactive>
+    <p:Classification>
+        <c:Type>LOCN</c:Type>
+        <p:Classification>NYC</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>CTRY</c:Type>
+        <p:Classification>US</p:Classification>
+    </p:Classification>
+    <p:Reference>
+        <c:Type>INT</c:Type>
+        <p:Reference>BNY NY CLT</p:Reference>
+    </p:Reference>
+    <p:Association>
+        <c:Type>ASDP</c:Type>
+        <p:Party>
+            <c:Type>INT</c:Type>
+            <c:Value>IRVTUS3NRTST</c:Value>
+        </p:Party>
+    </p:Association>
+</p:Party>

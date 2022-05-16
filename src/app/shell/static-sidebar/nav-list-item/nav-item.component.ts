@@ -43,13 +43,15 @@ export class NavItemComponent implements OnInit {
       //  console.log (`Checking '${this.item.route}' against '${url}'`);
 
       if (this.item.route && this.item.route) {
-        const expanded = url.indexOf(`${this.item.route}`);
-        if (expanded === 0) {
-          this.expanded = false;
-        } else {
-          this.expanded = false;
+        if (url !== undefined && url !== null) {
+          const expanded = url.indexOf(`${this.item.route}`);
+          if (expanded === 0) {
+            this.expanded = false;
+          } else {
+            this.expanded = false;
+          }
+          this.ariaExpanded = this.expanded;
         }
-        this.ariaExpanded = this.expanded;
       }
     });
   }

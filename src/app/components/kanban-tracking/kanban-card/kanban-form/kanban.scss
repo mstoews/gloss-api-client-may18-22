@@ -19,10 +19,4 @@ mat-form-field {
   font-size: medium;
   width: 50%;
 }
-.ng-valid[required],
-.ng-valid.required {
-  border-left: 5px solid #42a948;
-}
-.ng-invalid:not(form) {
-  border-left: 5px solid #a94442;
-}
+

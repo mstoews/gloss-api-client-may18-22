@@ -33,14 +33,11 @@
               "zen-observable",
               "highlight.js",
               "apexcharts",
-              "ng-apexcharts"
+              "ng-apexcharts",
+              "fast-xml-parser"
             ],
             "styles": [
-              "node_modules/devextreme/dist/css/dx.common.css",
-              "node_modules/devextreme/dist/css/dx.light.css",
-              "node_modules/devextreme/dist/css/dx.material.blue.dark.css",
-              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "src/styles/_broadridge-dark.scss",
               "src/styles.scss"
             ],
             "scripts": []

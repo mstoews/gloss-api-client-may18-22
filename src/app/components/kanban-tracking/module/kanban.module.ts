@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { TaskComponent } from '../kanban-card/tasks-card/task.component';
 import { KanbanBoardComponent } from '../kanban-card/kanban.board.component';
-import { KanbanMenubarComponent } from '../menubar/menubar.component';
+import { KanbanMenubarComponent } from '../kanban-menubar/menubar.component';
 import { KanbanGroupComponent } from '../kanban-group/kanban.group.component';
 import { KanbanMainComponent } from '../kanban-main/kanban.main.component';
 import { KanbanTaskFormComponent } from '../kanban-card/kanban-form/kanban.task.form';

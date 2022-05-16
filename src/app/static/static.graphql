@@ -11,12 +11,6 @@ query users {
   }
 }
 
-query ValidateUser($userid: String!)
- { 
-  ValidateUser(userid: $userid){
-    validUser
-  }
-}
 
 mutation SignUp($data: UserInput!) {
   signup(data: $data) {
@@ -1896,4 +1890,8 @@ mutation deleteTETemplate($component_type: String!, $template_type: String!) {
     version_no
     version_user
   }
+}
+
+mutation addPartyFromXML($xml: String!){
+  addPartyfromXML(xml: $xml)
 }

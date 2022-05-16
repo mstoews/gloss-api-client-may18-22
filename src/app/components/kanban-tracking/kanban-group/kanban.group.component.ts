@@ -39,7 +39,6 @@ export class KanbanGroupComponent implements AfterViewInit {
       this.partyRef = ref.getPartyRef();
       this.clientRef = ref.getClientRef();
       this.currectSelection = ref.getCurrentTabSelection();
-      //  console.log (`Refreshing party ref ${this.partyRef}`);
     });
   }
 

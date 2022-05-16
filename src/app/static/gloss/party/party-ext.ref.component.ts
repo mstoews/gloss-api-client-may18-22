@@ -58,6 +58,7 @@ export class PartyExtRefComponent implements OnInit {
     this.updateData();
   }
 
+
   update(data: PartyExtRefInput) {
     this.partyService.updatePartyExtRef(data);
     this.updateData();

@@ -1,0 +1,249 @@
+{
+    "?xml": {
+        "@_version": 1,
+        "@_encoding": "UTF-8",
+        "@_standalone": "yes"
+    },
+    "Party": {
+        "Type": "COMP",
+        "Origin": "TE-PARTY",
+        "OriginReference": "CMP4",
+        "OriginVersion": 1615956855071,
+        "DefaultTimeZone": "Asia/Tokyo",
+        "Name": "BR SEC JAPAN",
+        "LongName": "BR SEC JAPAN",
+        "ExtraLongName": "ブロードリッジ証券ジャパン",
+        "Inactive": false,
+        "Date": {
+            "Type": "DAST",
+            "Date": "1900-01-01T07:00:00"
+        },
+        "Classification": [
+            {
+                "Type": "TMZO",
+                "Classification": "JST"
+            },
+            {
+                "Type": "LOCN",
+                "Classification": "TOK"
+            },
+            {
+                "Type": "CTRY",
+                "Classification": "JP"
+            },
+            {
+                "Type": "HOL",
+                "Classification": "JP"
+            },
+            {
+                "Type": "TZOF",
+                "Classification": 0
+            },
+            {
+                "Type": "CHPR",
+                "Classification": "NORM"
+            },
+            {
+                "Type": "PPUR",
+                "Classification": "VALU"
+            },
+            {
+                "Type": 5093,
+                "Classification": "US S"
+            },
+            {
+                "Type": "INRF",
+                "Classification": "QUIK"
+            },
+            {
+                "Type": "VDDA",
+                "Classification": "01MO"
+            },
+            {
+                "Type": "CCPV",
+                "Classification": "APEI"
+            },
+            {
+                "Type": "PTSP",
+                "Classification": "NONE"
+            },
+            {
+                "Type": "HFRQ",
+                "Classification": "MEND"
+            },
+            {
+                "Type": 5015,
+                "Classification": "BL01"
+            },
+            {
+                "Type": "CLOC",
+                "Classification": "L"
+            },
+            {
+                "Type": "PCNF",
+                "Classification": "NONE"
+            },
+            {
+                "Type": 5020,
+                "Classification": "NONE"
+            },
+            {
+                "Type": "TREP",
+                "Classification": "TRAX"
+            },
+            {
+                "Type": 5021,
+                "Classification": "NONE"
+            },
+            {
+                "Type": 5022,
+                "Classification": "NONE"
+            }
+        ],
+        "Reference": [
+            {
+                "Type": "INT",
+                "Reference": "CMP4"
+            },
+            {
+                "Type": "BIC",
+                "Reference": "BRSCJPJT"
+            },
+            {
+                "Type": "BIC8",
+                "Reference": "BRSCJPJT"
+            },
+            {
+                "Type": "OSE",
+                "Reference": 12345
+            },
+            {
+                "Type": "GLDB",
+                "Reference": "CMP4"
+            },
+            {
+                "Type": "JSDA",
+                "Reference": 655
+            },
+            {
+                "Type": "JSFC",
+                "Reference": 23456
+            },
+            {
+                "Type": "GPID",
+                "Reference": "CMP4"
+            },
+            {
+                "Type": "PREF",
+                "Reference": "BRSECJAPAN"
+            },
+            {
+                "Type": "TSE",
+                "Reference": 12345
+            },
+            {
+                "Type": "JGNA",
+                "Reference": "BRSCJPJT001X"
+            },
+            {
+                "Type": "JSD",
+                "Reference": 12345
+            },
+            {
+                "Type": "ABJN",
+                "Reference": "BRSCJPJT"
+            },
+            {
+                "Type": "BOJ",
+                "Reference": 12345
+            },
+            {
+                "Type": "ABJJ",
+                "Reference": "BRSCJPJT"
+            },
+            {
+                "Type": "LEDG",
+                "Reference": "CMP4"
+            }
+        ],
+        "Flag": [
+            {
+                "Type": 2566,
+                "Flag": "SBLA"
+            },
+            {
+                "Type": 3047,
+                "Flag": "JMRR"
+            },
+            {
+                "Type": 1864,
+                "Flag": "EQTY"
+            },
+            {
+                "Type": 1864,
+                "Flag": "WARR"
+            },
+            {
+                "Type": 1864,
+                "Flag": "OTHR"
+            },
+            {
+                "Type": 1864,
+                "Flag": "DEBT"
+            },
+            {
+                "Type": 1102,
+                "Flag": "TRPI"
+            },
+            {
+                "Type": 1102,
+                "Flag": "CLCT"
+            },
+            {
+                "Type": 1102,
+                "Flag": "SMCC"
+            }
+        ],
+        "Narrative": [
+            {
+                "Type": "INAM",
+                "Narrative": "BR SEC JAPAN"
+            },
+            {
+                "Type": "PJEX",
+                "Narrative": "ブロードリッジ証券ジャパン"
+            },
+            {
+                "Type": "PEEX",
+                "Narrative": "BROADRIDGE SECURITIES (JAPAN) LTD"
+            }
+        ],
+        "Association": {
+            "Type": "NBK",
+            "Party": {
+                "Type": "INT",
+                "Value": "NET BOOK"
+            }
+        },
+        "Instrument": {
+            "Type": "COBI",
+            "Instrument": {
+                "Type": "INT",
+                "Value": "JPY"
+            }
+        },
+        "Address": {
+            "Type": "HEAD",
+            "ContactName": "YUMIKO YOSHIOKA",
+            "ContactTitle": "ADMINISTRATION DEPT",
+            "Line1": "7F S-GATE AKASAKA SANNO",
+            "Line2": "2-5-1 AKASAKA",
+            "Line3": "MINATO-KU",
+            "Line4": "TOKYO",
+            "PostCode": "107-0052",
+            "IntDialCode": 81,
+            "PhoneNumber": "+81 3 5797-8300",
+            "Email": "james.marsden@broadridge.com"
+        }
+    }
+}

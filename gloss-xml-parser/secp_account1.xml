@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:Party xmlns:p="broadridge:spsi:gloss:Party" xmlns:pa="broadridge:spsi:gloss:PartyAccount" xmlns:pc="broadridge:spsi:gloss:Configuration" xmlns:c="broadridge:spsi:gloss:Common">
+    <p:Type>SECP</p:Type>
+    <p:Origin>EXCL</p:Origin>
+    <p:OriginReference>SG-RTL0007</p:OriginReference>
+    <p:OriginVersion>4403483204</p:OriginVersion>
+    <p:DefaultTimeZone>Asia/Tokyo</p:DefaultTimeZone>
+    <p:Name>JOHN SMITH (M)</p:Name>
+    <p:LongName>JOHN SMITH (M)</p:LongName>
+    <p:ExtraLongName>JOHN SMITH (M)</p:ExtraLongName>
+    <p:Inactive>false</p:Inactive>
+    <p:Classification>
+        <c:Type>LOCN</c:Type>
+        <p:Classification>SIN</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>CTRY</c:Type>
+        <p:Classification>SG</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>HOL</c:Type>
+        <p:Classification>SGE</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>PCUS</c:Type>
+        <p:Classification>SCB</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>PCHG</c:Type>
+        <p:Classification>CLNT</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>4002</c:Type>
+        <p:Classification>RTCL</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>PADC</c:Type>
+        <p:Classification>EXT</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>PCCS</c:Type>
+        <p:Classification>NORM</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>LBAL</c:Type>
+        <p:Classification>MARG</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>8101</c:Type>
+        <p:Classification>N</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>PRIY</c:Type>
+        <p:Classification>L</p:Classification>
+    </p:Classification>
+    <p:Reference>
+        <c:Type>INT</c:Type>
+        <p:Reference>SG-RTL0007</p:Reference>
+    </p:Reference>
+    <p:Reference>
+        <c:Type>BIC</c:Type>
+        <p:Reference>CDPLSGSG</p:Reference>
+    </p:Reference>
+    <p:Reference>
+        <c:Type>BIC8</c:Type>
+        <p:Reference>CDPLSGSG</p:Reference>
+    </p:Reference>
+    <p:Reference>
+        <c:Type>PREF</c:Type>
+        <p:Reference>SG-RTL0007</p:Reference>
+    </p:Reference>
+    <p:Narrative>
+        <c:Type>SNAM</c:Type>
+        <p:Narrative>JOHN SMITH (M)</p:Narrative>
+    </p:Narrative>
+    <p:Narrative>
+        <c:Type>LNAM</c:Type>
+        <p:Narrative>JOHN SMITH (M)</p:Narrative>
+    </p:Narrative>
+    <p:Narrative>
+        <c:Type>XNAM</c:Type>
+        <p:Narrative>JOHN SMITH (M)</p:Narrative>
+    </p:Narrative>
+    <p:Narrative>
+        <c:Type>PEEX</c:Type>
+        <p:Narrative>JOHN SMITH (M)</p:Narrative>
+    </p:Narrative>
+</p:Party>

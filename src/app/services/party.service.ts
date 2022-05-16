@@ -283,11 +283,11 @@ export class PartyService {
 
   public createParty(data: glossApi.PartyInput) {
     data.client_ref = this.getClientRef();
-    return this.createPartyGQL.mutate({ data: data });
+    return this.createPartyGQL.mutate({ data });
   }
 
   public updatePartyByRef(data: glossApi.PartyInput) {
-    return this.updatePartyByRefGQL.mutate({ data: data });
+    return this.updatePartyByRefGQL.mutate({ data });
   }
 
   public deletePartyTree(partyRef: string) {
@@ -379,14 +379,14 @@ export class PartyService {
 
   public createPartyExtRef(data: glossApi.PartyExtRefInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyExtRefGQL.mutate({ data: data }).subscribe(
-      (value) => this.snackService.showMessage('Created'),
+    this.createPartyExtRefGQL.mutate({ data }).subscribe(
+      (value) => this.snackService.showMessage(`Created ${value.data.createPartyExtRef.party_ref}`),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartyExtRef(data: glossApi.PartyExtRefInput) {
-    this.updatePartyExtRefGQL.mutate({ data: data }).subscribe(
+    this.updatePartyExtRefGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -435,13 +435,13 @@ export class PartyService {
   public createPartyClassification(data: glossApi.PartyClassInput) {
     data.client_ref = this.getClientRef();
     this.createPartyClassificationGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage('Created'),
+      (value) => this.snackService.showMessage(`Created: ${value.data.createPartyClassification.party_ref}`),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartyClassification(data: glossApi.PartyClassInput) {
-    this.updatePartyClassificationGQL.mutate({ data: data }).subscribe(
+    this.updatePartyClassificationGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -489,14 +489,14 @@ export class PartyService {
 
   public createPartyFlag(data: glossApi.PartyFlagInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyFlagGQL.mutate({ data: data }).subscribe(
-      (value) => this.snackService.showMessage('Created'),
+    this.createPartyFlagGQL.mutate({ data }).subscribe(
+      (value) => this.snackService.showMessage(`Party flag created for: ${value.data.createPartyFlag.party_ref}`),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartyFlag(data: glossApi.PartyFlagInput) {
-    this.updatePartyFlagGQL.mutate({ data: data }).subscribe(
+    this.updatePartyFlagGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -545,15 +545,15 @@ export class PartyService {
 
   public createPartyNarrative(data: glossApi.PartyNarrativeInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyNarrativeGQL.mutate({ data: data }).subscribe(
-      (value) => this.snackService.showMessage('Created'),
+    this.createPartyNarrativeGQL.mutate({ data }).subscribe(
+      (value) => this.snackService.showMessage(`Party Narrative created for: ${value.data.createPartyNarrative.party_ref}`),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartyNarrative(data: glossApi.PartyNarrativeInput) {
-    this.updatePartyNarrativeGQL.mutate({ data: data }).subscribe(
-      (value) => this.snackService.showMessage('Updated'),
+    this.updatePartyNarrativeGQL.mutate({ data }).subscribe(
+      (value) => this.snackService.showMessage('Party Narrative updated ... '),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -603,14 +603,14 @@ export class PartyService {
 
   public createPartyAssociation(data: glossApi.PartyAssocInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyAssociationGQL.mutate({ data: data }).subscribe(
-      (value) => this.snackService.showMessage('Created'),
+    this.createPartyAssociationGQL.mutate({ data }).subscribe(
+      (value) => this.snackService.showMessage(`Party Association created for : ${value.data.createPartyAssoc.party_ref}`),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartyAssociation(data: glossApi.PartyAssocInput) {
-    this.updatePartyAssociationGQL.mutate({ data: data }).subscribe(
+    this.updatePartyAssociationGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -658,14 +658,14 @@ export class PartyService {
 
   public createPartyInstr(data: glossApi.PartyInstrInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyInstrGQL.mutate({ data: data }).subscribe(
-      (value) => this.snackService.showMessage('Created'),
+    this.createPartyInstrGQL.mutate({ data }).subscribe(
+      (value) => this.snackService.showMessage(`Party Instrument created ${value.data.createPartyInstrument.party_ref}`),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartyInstr(data: glossApi.PartyInstrInput) {
-    this.updatePartyInstrGQL.mutate({ data: data }).subscribe(
+    this.updatePartyInstrGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -721,14 +721,14 @@ export class PartyService {
 
   public createPartySsi(data: glossApi.PartySsiInput) {
     data.client_ref = this.getClientRef();
-    this.createPartySsiGQL.mutate({ data: data }).subscribe(
+    this.createPartySsiGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Created'),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartySsi(data: glossApi.PartySsiInput) {
-    this.updatePartySsiGQL.mutate({ data: data }).subscribe(
+    this.updatePartySsiGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -794,14 +794,14 @@ export class PartyService {
 
   createPartyDate(data: glossApi.PartyDateInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyDateGQL.mutate({ data: data }).subscribe(
+    this.createPartyDateGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Created'),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   updatePartyDate(data: glossApi.PartyDateInput) {
-    this.updatePartyDateGQL.mutate({ data: data }).subscribe(
+    this.updatePartyDateGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -848,14 +848,14 @@ export class PartyService {
 
   createPartyAddress(data: glossApi.PartyAddressInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyAddressGQL.mutate({ data: data }).subscribe(
-      (value) => this.snackService.showMessage('Created'),
+    this.createPartyAddressGQL.mutate({ data }).subscribe(
+      (value) => this.snackService.showMessage(`Party Address created for: ${value.data.createPartyAddress.party_ref}`),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   updatePartyAddress(data: glossApi.PartyAddressInput) {
-    this.updatePartyAddressGQL.mutate({ data: data }).subscribe(
+    this.updatePartyAddressGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -913,14 +913,14 @@ export class PartyService {
 
   public createPartyTemplate(data: glossApi.PartyTemplateInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyTemplateGQL.mutate({ data: data }).subscribe(
+    this.createPartyTemplateGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Created'),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartyTemplate(data: glossApi.PartyTemplateInput) {
-    this.updatePartyTemplateGQL.mutate({ data: data }).subscribe(
+    this.updatePartyTemplateGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -966,14 +966,14 @@ export class PartyService {
 
   public createPartySwift(data: glossApi.PartySwiftInput) {
     data.client_ref = this.getClientRef();
-    this.createPartySwiftGQL.mutate({ data: data }).subscribe(
+    this.createPartySwiftGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Created'),
       (error) => this.snackService.showMessage(error.message)
     );
   }
 
   public updatePartySwift(data: glossApi.PartySwiftInput) {
-    this.updatePartySwiftGQL.mutate({ data: data }).subscribe(
+    this.updatePartySwiftGQL.mutate({ data }).subscribe(
       (value) => this.snackService.showMessage('Updated'),
       (error) => this.snackService.showMessage(error.message)
     );
@@ -1041,7 +1041,7 @@ export class PartyService {
 
   public createPartyClassAssoc(data: glossApi.ClassAssocInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyClassAssocGQL.mutate({ data: data }).subscribe(
+    this.createPartyClassAssocGQL.mutate({ data }).subscribe(
       (value) => {
         this.snackService.showMessage(
           'Created Class assoc code:' +
@@ -1059,7 +1059,7 @@ export class PartyService {
   public updatePartyClassAssoc(data: glossApi.ClassAssocInput) {
     this.updatePartyClassAssocGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe(
         (value) => {
@@ -1087,11 +1087,11 @@ export class PartyService {
       .mutate({
         client_ref: this.getClientRef(),
         party_ref: partyRef,
-        class_assoc_code: class_assoc_code,
-        code_type: code_type,
-        class_1: class_1,
-        code_1: code_1,
-        class_2: class_2
+        class_assoc_code,
+        code_type,
+        class_1,
+        code_1,
+        class_2
       })
       .subscribe(
         (value) => {
@@ -1158,7 +1158,7 @@ export class PartyService {
 
   public createPartyNetting(data: glossApi.NettingInput) {
     data.client_ref = this.getClientRef();
-    this.createPartyNettingGQL.mutate({ data: data }).subscribe(
+    this.createPartyNettingGQL.mutate({ data }).subscribe(
       (value) => {
         this.snackService.showMessage(
           'Created :' +
@@ -1174,7 +1174,7 @@ export class PartyService {
   }
 
   public updatePartyNetting(data: glossApi.NettingInput) {
-    this.updatePartyNettingGQL.mutate({ data: data }).subscribe(
+    this.updatePartyNettingGQL.mutate({ data }).subscribe(
       (value) => {
         this.snackService.showMessage(
           'Updated :' +
@@ -1312,7 +1312,7 @@ export class PartyService {
 
   public createGlossScheduler(data: glossApi.GlossSchedulerInput) {
     data.client_ref = this.getClientRef();
-    this.createGlossSchedulerGQL.mutate({ data: data }).subscribe(
+    this.createGlossSchedulerGQL.mutate({ data }).subscribe(
       (value) => {
         this.snackService.showMessage(
           'Created Event:' + value.data.createglossScheduler.event_ref
@@ -1338,7 +1338,7 @@ export class PartyService {
         event_ref: eventRef,
         due_date_time: dueDateTime,
         database_code: databaseCode,
-        data: data,
+        data,
       })
       .subscribe(
         (value) => {
@@ -1598,13 +1598,13 @@ export class PartyService {
   public createdpmParty(data: glossApi.DpmPartyDefInput) {
     data.client_ref = this.getClientRef();
     return this.createdpmPartyGQL.mutate({
-      data: data,
+      data,
     });
   }
 
   public updatedpmPartyByRef(data: glossApi.DpmPartyDefInput) {
     return this.updatedpmPartyByRefGQL.mutate({
-      data: data,
+      data,
     });
   }
 
@@ -1700,7 +1700,7 @@ export class PartyService {
 
   public createdpmPartyExtRef(data: glossApi.DpmPartyExtRefInput) {
     data.client_ref = this.getClientRef();
-    this.createdpmPartyExtRefGQL.mutate({ data: data }).subscribe((value) => {
+    this.createdpmPartyExtRefGQL.mutate({ data }).subscribe((value) => {
       this.snackService.showMessage(
         'Created Party ext ref ' + value.data.createdpmPartyExtRef.party_ref
       );
@@ -1710,7 +1710,7 @@ export class PartyService {
   public updatedpmPartyExtRef(data: glossApi.DpmPartyExtRefInput) {
     this.updatedpmPartyExtRefGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe();
   }
@@ -1769,7 +1769,7 @@ export class PartyService {
     data.client_ref = this.getClientRef();
     this.createdpmPartyFlagGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -1781,7 +1781,7 @@ export class PartyService {
   public updatedpmPartyFlag(data: glossApi.DpmPartyFlagInput) {
     this.updatedpmPartyFlagGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe();
   }
@@ -1842,7 +1842,7 @@ export class PartyService {
     data.client_ref = this.getClientRef();
     this.createdpmAccountGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -1854,7 +1854,7 @@ export class PartyService {
   public updateDpmAccount(data: glossApi.DpmAccountInput) {
     return this.updatedpmAccountGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -1914,7 +1914,7 @@ export class PartyService {
 
   public createdpmAccountExtRef(data: glossApi.DpmAccountExtRefInput) {
     data.client_ref = this.getClientRef();
-    this.createdpmAccountExtRefGQL.mutate({ data: data }).subscribe((value) => {
+    this.createdpmAccountExtRefGQL.mutate({ data }).subscribe((value) => {
       this.snackService.showMessage(
         'Created Account ext ref ' +
         value.data.createdpmAccountExtRef.company_ref
@@ -1925,7 +1925,7 @@ export class PartyService {
   public updatedpmAccountExtRef(data: glossApi.DpmAccountExtRefInput) {
     this.updatedpmAccountExtRefGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe();
   }
@@ -1943,8 +1943,8 @@ export class PartyService {
         party_ref: partyRef,
         client_ref: this.getClientRef(),
         component_type: componentType,
-        account_no: account_no,
-        account_ext_ref_type: account_ext_ref_type,
+        account_no,
+        account_ext_ref_type,
       })
       .subscribe();
   }
@@ -1987,7 +1987,7 @@ export class PartyService {
     data.client_ref = this.getClientRef();
     this.createdpmAccountFlagGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -1999,7 +1999,7 @@ export class PartyService {
   public updatedpmAccountFlag(data: glossApi.DpmAccountFlagInput) {
     this.updatedpmAccountFlagGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe();
   }
@@ -2018,7 +2018,7 @@ export class PartyService {
         party_ref: partyRef,
         client_ref: this.getClientRef(),
         component_type: componentType,
-        account_no: account_no,
+        account_no,
         account_flag_type: flagType,
         account_flag: flagCode,
       })
@@ -2062,7 +2062,7 @@ export class PartyService {
     data.client_ref = this.getClientRef();
     this.createdpmConfigDefGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -2074,7 +2074,7 @@ export class PartyService {
   public updatedpmConfigDef(data: glossApi.DpmConfigDefInput) {
     this.updatedpmConfigDefGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe(
         (value) => {
@@ -2130,7 +2130,7 @@ export class PartyService {
 
   public createdatabase(data: glossApi.DatabasesInput) {
     data.client_ref = this.getClientRef();
-    this.createdatabaseGQL.mutate({ data: data }).subscribe((value) => {
+    this.createdatabaseGQL.mutate({ data }).subscribe((value) => {
       this.snackService.showMessage(
         'Created Database ' + value.data.createdatabase
       );
@@ -2140,7 +2140,7 @@ export class PartyService {
   public updatedatabase(data: glossApi.DatabasesInput) {
     this.updatedatabaseGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe();
   }
@@ -2212,7 +2212,7 @@ export class PartyService {
 
   public createjsdcfiledef(data: glossApi.JsdcFileDefInput) {
     data.client_ref = this.getClientRef();
-    this.createjsdcfiledefGQL.mutate({ data: data }).subscribe((value) => {
+    this.createjsdcfiledefGQL.mutate({ data }).subscribe((value) => {
       this.snackService.showMessage(
         'Created jsdcfiledef ' + value.data.createJsdcFileDef
       );
@@ -2222,7 +2222,7 @@ export class PartyService {
   public updatejsdcfiledef(data: glossApi.JsdcFileDefInput) {
     this.updatejsdcfiledefGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe();
   }
@@ -2232,7 +2232,7 @@ export class PartyService {
       .mutate({
         client_ref: this.getClientRef(),
         component_type: componentType,
-        file_name: file_name,
+        file_name,
       })
       .subscribe();
   }
@@ -2305,7 +2305,7 @@ export class PartyService {
 
   public createdpmScheduler(data: glossApi.DpmSchedulerInput) {
     data.client_ref = this.getClientRef();
-    this.createdpmSchedulerGQL.mutate({ data: data }).subscribe((value) => {
+    this.createdpmSchedulerGQL.mutate({ data }).subscribe((value) => {
       this.snackService.showMessage(
         'Created Event:' + value.data.createdpmScheduler.event_ref
       );
@@ -2328,7 +2328,7 @@ export class PartyService {
         event_ref: eventRef,
         due_date_time: dueDateTime,
         database_code: databaseCode,
-        data: data,
+        data,
       })
       .subscribe(
         (value) => {
@@ -2351,12 +2351,12 @@ export class PartyService {
   ) {
     this.deletedpmSchedulerGQL
       .mutate({
-        msg_type: msg_type,
+        msg_type,
         client_ref: this.getClientRef(),
         component_type: componentType,
-        event_ref: event_ref,
-        due_date_time: due_date_time,
-        database_code: database_code,
+        event_ref,
+        due_date_time,
+        database_code,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -2435,7 +2435,7 @@ export class PartyService {
   ) {
     this.updateConfigDefGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe(
         (value) => {
@@ -2620,7 +2620,7 @@ export class PartyService {
   public createTeTemplate(data: glossApi.TeTemplateInput) {
     this.createTeTemplateGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -2632,7 +2632,7 @@ export class PartyService {
   public updateTeTemplate(data: glossApi.TeTemplateInput) {
     this.updateTeTemplateGQL
       .mutate({
-        data: data,
+        data,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
