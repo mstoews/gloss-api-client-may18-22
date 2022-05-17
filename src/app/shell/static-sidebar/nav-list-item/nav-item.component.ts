@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
 import { NavItem } from './nav-item';
 import { Router } from '@angular/router';
 import { NavService } from './nav-service';
@@ -40,21 +40,17 @@ export class NavItemComponent implements OnInit {
 
   ngOnInit() {
     this.navService.currentUrl.subscribe((url: string) => {
-      //  console.log (`Checking '${this.item.route}' against '${url}'`);
-
-      if (this.item.route && this.item.route) {
-        if (url !== undefined && url !== null) {
-          const expanded = url.indexOf(`${this.item.route}`);
-          if (expanded === 0) {
-            this.expanded = false;
-          } else {
-            this.expanded = false;
-          }
-          this.ariaExpanded = this.expanded;
-        }
-      }
+      console.log (`Checking '${this.item.route}' against '${url}'`);
+      // if (this.item.route) {
+      //     const expand = url.indexOf(`${this.item.route}`);
+      //     if (expand === 0) {
+      //       this.expanded = false;
+      //     }
+      //     this.ariaExpanded = this.expanded;
+      //   }
     });
-  }
+    this.ariaExpanded = this.expanded;
+    }
 
   onItemSelected(item: NavItem) {
     if (item.children && item.children.length) {

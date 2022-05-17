@@ -95,7 +95,7 @@ export class StaticSidebarComponent implements OnInit {
         {
           displayName: 'DEPOT',
           iconName: 'heroicons_outline:credit-card',
-          route: '/static/depot',
+          route: '/static/depo',
         },
         {
           displayName: 'TRADING BOOK',
@@ -136,7 +136,7 @@ export class StaticSidebarComponent implements OnInit {
         },
         {
           displayName: 'CONFIG',
-          iconName: 'heroicons_solid:star',
+          iconName: 'heroicons_solid:cog',
           route: '/static/jasdecconfig',
         },
       ],
@@ -168,14 +168,14 @@ export class StaticSidebarComponent implements OnInit {
         },
         {
           displayName: 'CONFIG',
-          iconName: 'heroicons_solid:star',
+          iconName: 'heroicons_solid:cog',
           route: '/static/bojconfig',
         },
       ],
     },
     {
       displayName: 'TE',
-      iconName: 'heroicons_outline:star',
+      iconName: 'heroicons_outline:adjustments',
       route: '/static/tetemplate',
       children: [],
     },
@@ -184,7 +184,6 @@ export class StaticSidebarComponent implements OnInit {
   @ViewChild('drawer', { static: true }) public drawer!: MatDrawer;
 
   onToggleMenu() {
-    //  console.log ('Toggle Menu Side Navigation ');
     this.drawer.toggle();
   }
 

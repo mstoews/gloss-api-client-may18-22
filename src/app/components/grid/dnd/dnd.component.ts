@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PartyService } from 'app/services/party.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { XMLParser } from 'fast-xml-parser';
 import { SnackService } from '../../../services/snack.service';
 import { PartyExtRefInput } from 'app/services/api.service';
@@ -14,14 +14,8 @@ import {
   Reference,
   Classification,
   Instrument,
-  Party2,
   Address,
-  Instrument2,
-  Code,
 } from './model.type';
-import { Party } from '../../../services/api.service';
-import { setFlagsFromString } from 'v8';
-import { toNumber } from 'lodash';
 
 const options = {
   ignoreAttributes: true,
@@ -104,9 +98,12 @@ export class DndComponent {
       const reader = new FileReader();
       reader.onload = (e) => {
         const fileString = e.target.result as string;
-        const parser = new XMLParser(options);
-        data = parser.parse(fileString) as IParty;
-        this.processFileDataToParty(data.Party);
+        const lines = fileString.split('\n');
+        for (const line of lines) {
+          const parser = new XMLParser(options);
+          data = parser.parse(line) as IParty;
+          this.processFileDataToParty(data.Party);
+        }
       };
       reader.readAsText(item);
       reader.onerror = this.errorHandler;
@@ -133,81 +130,112 @@ export class DndComponent {
   }
 
   async processFileDataToParty(party: IParty) {
-    const today = new Date();
-    const inputObject = {
-      client_ref: '',
-      party_ref: party.OriginReference,
-      party_type: party.Type,
-      party_short_name: party.Name,
-      party_long_name: party.LongName,
-      party_extra_long_name: party.ExtraLongName,
-      active_ind: 'A',
-      has_swift_config: 'N',
-      has_netting_config: 'N',
-      version_no: 0,
-      version_date: today.toISOString(),
-      version_user: 'ADMIN',
-    };
-    if (inputObject) {
-      this.partyService.createParty(inputObject).subscribe(async (val) => {
-        console.log('Update completed');
-      });
+    await this.party(party);
+    await this.reference(party);
+    await this.narrative(party);
+    await this.classification(party);
+    await this.flag(party);
+    await this.instrument(party);
+    await this.association(party);
+    await this.address(party);
+  }
 
-      this.reference(party);
-
-      this.narrative(party);
-
-      this.classification(party);
-
-      const flags: Flag[] = party.Flag;
-      const associations: Association[] = party.Association;
-      const instruments: Instrument[] = party.Instrument;
-
-      this.updatePartyAssociation(party.OriginReference, associations);
-      this.updatePartyFlag(party.OriginReference, flags);
-
-      this.updatePartyInstruments(party.OriginReference, instruments);
-
-      this.updatePartyAddress(party.OriginReference, party.Address);
+  private async party(party: IParty) {
+    if (party) {
+      const today = new Date();
+      const inputObject = {
+        client_ref: '',
+        party_ref: party.OriginReference,
+        party_type: party.Type,
+        party_short_name: party.Name,
+        party_long_name: party.LongName,
+        party_extra_long_name: party.ExtraLongName,
+        active_ind: 'A',
+        has_swift_config: 'N',
+        has_netting_config: 'N',
+        version_no: 0,
+        version_date: today.toISOString(),
+        version_user: 'ADMIN',
+      };
+      if (inputObject) {
+        this.partyService.createParty(inputObject).subscribe(async (val) => {
+          console.log('Update completed');
+        });
+      }
     }
   }
 
-  private classification(party: IParty) {
-    if (Array.isArray(party.Classification)) {
-      const classifications: Classification[] = party.Classification;
-      this.updateClassification(party.OriginReference, classifications);
-    }
-    else {
-      const classification: Classification = party.Classification;
-      this.updateSingleClassification(party.OriginReference, classification);
-    }
-  }
-
-  private narrative(party: IParty) {
-    if (Array.isArray(party.Narrative)) {
-      const narratives: Narrative[] = party.Narrative;
-      this.updatePartyNarrative(party.OriginReference, narratives);
-    }
-    else {
-      const narrative: Narrative = party.Narrative;
-      this.updatePartySingleNarrative(party.OriginReference, narrative);
+  private async flag(party: IParty) {
+    if (party.Flag) {
+      if (Array.isArray(party.Flag)) {
+        const flags: Flag[] = party.Flag;
+        this.updatePartyFlag(party.OriginReference, flags);
+      } else {
+        const flag: Flag = party.Flag;
+        this.updateSinglePartyFlag(party.OriginReference, flag);
+      }
     }
   }
 
-  private reference(party: IParty) {
-    if (Array.isArray(party.Reference)) {
-      const references: Reference[] = party.Reference;
-      this.updatePartyReference(party.OriginReference, references);
-    }
-    else {
-      const references: Reference = party.Reference;
-      this.updatePartySingleReference(party.OriginReference, references);
+  private async classification(party: IParty) {
+    if (party.Classification) {
+      if (Array.isArray(party.Classification)) {
+        const classifications: Classification[] = party.Classification;
+        this.updateClassification(party.OriginReference, classifications);
+      } else {
+        const classification: Classification = party.Classification;
+        this.updateSingleClassification(party.OriginReference, classification);
+      }
     }
   }
 
+  private async narrative(party: IParty) {
+    if (party.Narrative) {
+      if (Array.isArray(party.Narrative)) {
+        const narratives: Narrative[] = party.Narrative;
+        this.updatePartyNarrative(party.OriginReference, narratives);
+      } else {
+        const narrative: Narrative = party.Narrative;
+        this.updatePartySingleNarrative(party.OriginReference, narrative);
+      }
+    }
+  }
 
+  private async reference(party: IParty) {
+    if (party.Reference) {
+      if (Array.isArray(party.Reference)) {
+        const references: Reference[] = party.Reference;
+        this.updatePartyReference(party.OriginReference, references);
+      } else {
+        const references: Reference = party.Reference;
+        this.updatePartySingleReference(party.OriginReference, references);
+      }
+    }
+  }
 
+  private async association(party: IParty) {
+    if (party.Association) {
+      if (Array.isArray(party.Association)) {
+        const associations: Association[] = party.Association;
+        this.updatePartyAssociation(party.OriginReference, associations);
+      } else {
+        const association: Association = party.Association;
+        this.updateSinglePartyAssociation(party.OriginReference, association);
+      }
+    }
+  }
 
+  private async instrument(party: IParty) {
+    if (party.Instrument) {
+      if (Array.isArray(party.Instrument)) {
+        const instruments: Instrument[] = party.Instrument;
+        this.updatePartyInstruments(party.OriginReference, instruments);
+      } else {
+        const instrument: Instrument = party.Instrument;
+        this.updateSinglePartyInstrument(party.OriginReference, instrument);
+      }
+    }
+  }
 
   closeDialog() {
     this.dialogRef.close({ event: 'Cancel' });
@@ -224,7 +252,10 @@ export class DndComponent {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
-  async updatePartyInstruments(partyRef: string, instruments: Instrument[]) {
+  private async updatePartyInstruments(
+    partyRef: string,
+    instruments: Instrument[]
+  ) {
     const today = new Date();
     if (Array.isArray(instruments)) {
       for (const val of instruments) {
@@ -242,27 +273,33 @@ export class DndComponent {
         };
         this.partyService.createPartyInstr(input);
       }
-    } else {
-      console.log('Instrument:', instruments);
-      const input = {
-        party_ref: partyRef,
-        client_ref: '',
-        instr_ref: '',
-        instr_type: '',
-        instr_ref_type: '',
-        description: '',
-        version_date: today.toISOString(),
-        version_no: 1,
-        version_user: 'ADMIN',
-      };
-      this.partyService.createPartyInstr(input);
     }
   }
 
-  updateClassification(
+  private async updateSinglePartyInstrument(
+    partyRef: string,
+    instrument: Instrument
+  ) {
+    const today = new Date();
+    console.log('create single instrument', instrument);
+    const input = {
+      party_ref: partyRef,
+      client_ref: '',
+      instr_ref: instrument.Type,
+      instr_type: instrument.Instrument.Value,
+      instr_ref_type: instrument.Instrument.Type,
+      description: '',
+      version_date: today.toISOString(),
+      version_no: 1,
+      version_user: 'ADMIN',
+    };
+    this.partyService.createPartyInstr(input);
+  }
+
+  private async updateClassification(
     partyRef: string,
     classifications: Classification[]
-  ){
+  ) {
     const today = new Date();
     for (const val of classifications) {
       const input = {
@@ -279,40 +316,46 @@ export class DndComponent {
     }
   }
 
-  updateSingleClassification(
+  private async updateSingleClassification(
     partyRef: string,
     classification: Classification
-  ){
+  ) {
     const today = new Date();
     const input = {
-        party_ref: partyRef,
-        client_ref: '',
-        class_type: classification.Type,
-        class_code: classification.Classification,
-        description: '',
-        version_date: today.toISOString(),
-        version_no: this.VERSION_NO,
-        version_user: 'ADMIN',
-      };
+      party_ref: partyRef,
+      client_ref: '',
+      class_type: classification.Type,
+      class_code: classification.Classification,
+      description: '',
+      version_date: today.toISOString(),
+      version_no: this.VERSION_NO,
+      version_user: 'ADMIN',
+    };
     this.partyService.createPartyClassification(input);
   }
 
-updatePartySingleReference(partyRef: string, reference: Reference){
+  private async updatePartySingleReference(
+    partyRef: string,
+    reference: Reference
+  ) {
     const today = new Date();
     const input = {
-        party_ref: partyRef,
-        client_ref: '',
-        party_ext_ref_type: reference.Type,
-        party_ext_ref: reference.Reference,
-        description: '',
-        version_date: today.toISOString(),
-        version_no: this.VERSION_NO,
-        version_user: 'ADMIN',
-      };
+      party_ref: partyRef,
+      client_ref: '',
+      party_ext_ref_type: reference.Type,
+      party_ext_ref: reference.Reference,
+      description: '',
+      version_date: today.toISOString(),
+      version_no: this.VERSION_NO,
+      version_user: 'ADMIN',
+    };
     this.createPartyExtRef(input);
   }
 
-updatePartyReference( partyRef: string, references: Reference[])  {
+  private async updatePartyReference(
+    partyRef: string,
+    references: Reference[]
+  ) {
     const today = new Date();
     for (const val of references) {
       const input = {
@@ -330,11 +373,14 @@ updatePartyReference( partyRef: string, references: Reference[])  {
     }
   }
 
-async createPartyExtRef(data: PartyExtRefInput) {
+  private async createPartyExtRef(data: PartyExtRefInput) {
     this.partyService.createPartyExtRef(data);
   }
 
-updatePartyNarrative(partyRef: string, narratives: Narrative[]) {
+  private async updatePartyNarrative(
+    partyRef: string,
+    narratives: Narrative[]
+  ) {
     const today = new Date();
     for (const val of narratives) {
       const input = {
@@ -351,23 +397,25 @@ updatePartyNarrative(partyRef: string, narratives: Narrative[]) {
     }
   }
 
-updatePartySingleNarrative(partyRef: string, narrative: Narrative) {
+  private async updatePartySingleNarrative(
+    partyRef: string,
+    narrative: Narrative
+  ) {
     const today = new Date();
     const input = {
-        party_ref: partyRef,
-        client_ref: '',
-        narr_type: narrative.Type,
-        narrative: narrative.Narrative,
-        description: '',
-        version_date: today.toISOString(),
-        version_no: this.VERSION_NO,
-        version_user: 'ADMIN',
-      };
+      party_ref: partyRef,
+      client_ref: '',
+      narr_type: narrative.Type,
+      narrative: narrative.Narrative,
+      description: '',
+      version_date: today.toISOString(),
+      version_no: this.VERSION_NO,
+      version_user: 'ADMIN',
+    };
     this.partyService.createPartyNarrative(input);
   }
 
-
-async updatePartyFlag(partyRef: string, flags: Flag[]) {
+  private async updatePartyFlag(partyRef: string, flags: Flag[]) {
     console.log('updatePartyFlag', flags);
     for (const val of flags) {
       console.log(`${val.Type} : ${val.Flag}`);
@@ -388,46 +436,86 @@ async updatePartyFlag(partyRef: string, flags: Flag[]) {
     }
   }
 
-async updatePartyAssociation(partyRef: string, associations: Association[]) {
+  private async updateSinglePartyFlag(partyRef: string, flag: Flag) {
+    console.log('updatePartyFlag', flag);
+    const today = new Date();
+    let flagType: number;
+    flagType = flag.Type;
+    const input = {
+      party_ref: partyRef,
+      client_ref: '',
+      flag_type: flagType,
+      flag_code: flag.Flag,
+      description: '',
+      version_date: today.toISOString(),
+      version_no: this.VERSION_NO,
+      version_user: 'ADMIN',
+    };
+    this.partyService.createPartyFlag(input);
+  }
+
+  private async updatePartyAssociation(
+    partyRef: string,
+    associations: Association[]
+  ) {
     if (Array.isArray(associations)) {
       for (const val of associations) {
-      console.log(associations);
-      const today = new Date();
-      const input = {
-        party_ref: partyRef,
-        client_ref: '',
-        assoc_type: val.Party.Type,
-        assoc_party_ref: val.Type,
-        description: '',
-        version_date: today.toISOString(),
-        version_no: this.VERSION_NO,
-        version_user: 'ADMIN'
-      };
-      this.partyService.createPartyAssociation(input);
-    }
+        console.log(associations);
+        const today = new Date();
+        const input = {
+          party_ref: partyRef,
+          client_ref: '',
+          assoc_type: val.Party.Type,
+          assoc_party_ref: val.Type,
+          description: '',
+          version_date: today.toISOString(),
+          version_no: this.VERSION_NO,
+          version_user: 'ADMIN',
+        };
+        this.partyService.createPartyAssociation(input);
+      }
     }
   }
 
-async updatePartyAddress(partyRef: string, address: Address) {
-    console.log('updatePartyAddress', address.ContactName);
+  private async updateSinglePartyAssociation(
+    partyRef: string,
+    association: Association
+  ) {
+    console.log(association);
+    const today = new Date();
+    const input = {
+      party_ref: partyRef,
+      client_ref: '',
+      assoc_type: association.Party.Type,
+      assoc_party_ref: association.Type,
+      description: '',
+      version_date: today.toISOString(),
+      version_no: this.VERSION_NO,
+      version_user: 'ADMIN',
+    };
+    this.partyService.createPartyAssociation(input);
+  }
+
+  private async address(party: IParty) {
+    console.log('updatePartyAddress', party.Address.ContactName);
     const today = new Date();
     const add = {
-      party_ref: partyRef,
+      party_ref: party.OriginReference,
       client_ref: 'CORE',
-      addr_type: address.Type,
-      contact_name: address.ContactName,
-      contact_title: address.ContactTitle,
-      addr_line1: address.Line1,
-      addr_line2: address.Line2,
-      addr_line3: address.Line3,
-      addr_line4: address.Line4,
+      addr_type: party.Address.Type,
+      contact_name: party.Address.ContactName,
+      contact_title: party.Address.ContactTitle,
+      addr_line1: party.Address.Line1,
+      addr_line2: party.Address.Line2,
+      addr_line3: party.Address.Line3,
+      addr_line4: party.Address.Line4,
       addr_line5: '',
       addr_line6: '',
-      post_code: address.PostCode,
-      int_dial_code: address.IntDialCode.toString(),
-      phone_no: address.PhoneNumber,
+      post_code: party.Address.PostCode,
+      int_dial_code: party.Address.IntDialCode.toString(),
+      phone_no: party.Address.PhoneNumber,
       fax_no: '',
-      email: address.Email,
+      email: party.Address.Email,
       version_date: today.toISOString(),
       version_no: this.VERSION_NO,
       version_user: 'ADMIN',

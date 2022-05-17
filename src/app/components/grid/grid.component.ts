@@ -20,23 +20,29 @@ import { DndComponent } from './dnd/dnd.component';
     <div *ngIf="showBar === true">
       <mat-toolbar>
         <span class="fill-space">
-        <button
+          <button
             mat-flat-button
             (click)="onBtnExport()"
-            matTooltip="Download JSON">
+            matTooltip="Download JSON"
+          >
             <mat-icon [svgIcon]="'mat_outline:download'"> </mat-icon>
+            Download JSON
           </button>
           <button
             mat-flat-button
             (click)="onBtnImport()"
-            matTooltip="Upload XML Party">
+            matTooltip="Upload XML Party"
+          >
             <mat-icon [svgIcon]="'heroicons_outline:external-link'"> </mat-icon>
+            Drag and Drop XML
           </button>
         </span>
         <span>
           <button #selectFile mat-flat-button matTooltip="Upload JSON">
-            <mat-icon [svgIcon]="'mat_outline:upload'"></mat-icon></button
-        ></span>
+            <mat-icon [svgIcon]="'mat_outline:upload'"></mat-icon>
+            Upload JSON
+          </button></span
+        >
         <span><input type="file" (change)="onFileSelect($event)" /> </span>
       </mat-toolbar>
     </div>
@@ -65,7 +71,7 @@ import { DndComponent } from './dnd/dnd.component';
     <mat-progress-spinner mode="determinate" [value]="progress">
     </mat-progress-spinner>
   `,
-   styleUrls: ['./grid.component.scss'],
+  styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent implements OnInit {
   frameworkComponents;
@@ -214,7 +220,7 @@ export class GridComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       //  console.log ('Just before update', result.data);
       if (result === undefined) {
-          result = { event: 'Cancel' };
+        result = { event: 'Cancel' };
       }
       switch (result.event) {
         case 'Create':

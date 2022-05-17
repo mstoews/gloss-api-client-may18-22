@@ -10,7 +10,6 @@ import { PartyRefService } from './partyRef.service';
 })
 export class PartyService {
   constructor(
-
     private readonly partyRefService: PartyRefService,
     private snackService: SnackService,
     private http: HttpClient,
@@ -204,7 +203,7 @@ export class PartyService {
     private readonly getTeTemplatesGQL: glossApi.TeTemplatesGQL,
     private readonly createTeTemplateGQL: glossApi.CreateTeTemplateGQL,
     private readonly updateTeTemplateGQL: glossApi.UpdateTeTemplateGQL,
-    private readonly deleteTeTemplateGQL: glossApi.DeleteTeTemplateGQL,
+    private readonly deleteTeTemplateGQL: glossApi.DeleteTeTemplateGQL
   ) {
     this.isPartyTypeSelected = false;
   }
@@ -304,11 +303,13 @@ export class PartyService {
       { headerName: 'Short Name', field: 'party_short_name', minWidth: 75 },
       { headerName: 'Long Name', field: 'party_long_name', minWidth: 150 },
       {
-        headerName: 'Full Name', field: 'party_extra_long_name', minWidth: 225,
+        headerName: 'Full Name',
+        field: 'party_extra_long_name',
+        minWidth: 225,
       },
       { headerName: 'Active', field: 'active_ind' },
-      { headerName: 'swift config present', field: 'has_swift_config' },
-      { headerName: 'netting config present', field: 'has_netting_config' },
+      { headerName: 'Swift', field: 'has_swift_config' },
+      { headerName: 'Netting', field: 'has_netting_config' },
       { headerName: 'User Name', field: 'version_user' },
       { headerName: 'Version', field: 'version_no' },
       {
@@ -380,7 +381,10 @@ export class PartyService {
   public createPartyExtRef(data: glossApi.PartyExtRefInput) {
     data.client_ref = this.getClientRef();
     this.createPartyExtRefGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage(`Created ${value.data.createPartyExtRef.party_ref}`),
+      (value) =>
+        this.snackService.showMessage(
+          `Created ${value.data.createPartyExtRef.party_ref}`
+        ),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -435,7 +439,10 @@ export class PartyService {
   public createPartyClassification(data: glossApi.PartyClassInput) {
     data.client_ref = this.getClientRef();
     this.createPartyClassificationGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage(`Created: ${value.data.createPartyClassification.party_ref}`),
+      (value) =>
+        this.snackService.showMessage(
+          `Created: ${value.data.createPartyClassification.party_ref}`
+        ),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -490,7 +497,10 @@ export class PartyService {
   public createPartyFlag(data: glossApi.PartyFlagInput) {
     data.client_ref = this.getClientRef();
     this.createPartyFlagGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage(`Party flag created for: ${value.data.createPartyFlag.party_ref}`),
+      (value) =>
+        this.snackService.showMessage(
+          `Party flag created for: ${value.data.createPartyFlag.party_ref}`
+        ),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -546,7 +556,10 @@ export class PartyService {
   public createPartyNarrative(data: glossApi.PartyNarrativeInput) {
     data.client_ref = this.getClientRef();
     this.createPartyNarrativeGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage(`Party Narrative created for: ${value.data.createPartyNarrative.party_ref}`),
+      (value) =>
+        this.snackService.showMessage(
+          `Party Narrative created for: ${value.data.createPartyNarrative.party_ref}`
+        ),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -604,7 +617,10 @@ export class PartyService {
   public createPartyAssociation(data: glossApi.PartyAssocInput) {
     data.client_ref = this.getClientRef();
     this.createPartyAssociationGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage(`Party Association created for : ${value.data.createPartyAssoc.party_ref}`),
+      (value) =>
+        this.snackService.showMessage(
+          `Party Association created for : ${value.data.createPartyAssoc.party_ref}`
+        ),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -659,7 +675,10 @@ export class PartyService {
   public createPartyInstr(data: glossApi.PartyInstrInput) {
     data.client_ref = this.getClientRef();
     this.createPartyInstrGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage(`Party Instrument created ${value.data.createPartyInstrument.party_ref}`),
+      (value) =>
+        this.snackService.showMessage(
+          `Party Instrument created ${value.data.createPartyInstrument.party_ref}`
+        ),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -849,7 +868,10 @@ export class PartyService {
   createPartyAddress(data: glossApi.PartyAddressInput) {
     data.client_ref = this.getClientRef();
     this.createPartyAddressGQL.mutate({ data }).subscribe(
-      (value) => this.snackService.showMessage(`Party Address created for: ${value.data.createPartyAddress.party_ref}`),
+      (value) =>
+        this.snackService.showMessage(
+          `Party Address created for: ${value.data.createPartyAddress.party_ref}`
+        ),
       (error) => this.snackService.showMessage(error.message)
     );
   }
@@ -1045,9 +1067,9 @@ export class PartyService {
       (value) => {
         this.snackService.showMessage(
           'Created Class assoc code:' +
-          value.data.createClassAssoc.class_assoc_code +
-          'for party:' +
-          value.data.createClassAssoc.party_ref
+            value.data.createClassAssoc.class_assoc_code +
+            'for party:' +
+            value.data.createClassAssoc.party_ref
         );
       },
       (error) => {
@@ -1065,9 +1087,9 @@ export class PartyService {
         (value) => {
           this.snackService.showMessage(
             'Updated Class assoc code:' +
-            value.data.updateClassAssoc.class_assoc_code +
-            'for party:' +
-            value.data.updateClassAssoc.party_ref
+              value.data.updateClassAssoc.class_assoc_code +
+              'for party:' +
+              value.data.updateClassAssoc.party_ref
           );
         },
         (error) => {
@@ -1082,7 +1104,8 @@ export class PartyService {
     code_type: string,
     class_1: number,
     code_1: string,
-    class_2: number) {
+    class_2: number
+  ) {
     this.deletePartyClassAssocGQL
       .mutate({
         client_ref: this.getClientRef(),
@@ -1091,15 +1114,15 @@ export class PartyService {
         code_type,
         class_1,
         code_1,
-        class_2
+        class_2,
       })
       .subscribe(
         (value) => {
           this.snackService.showMessage(
             'Updated Class assoc code:' +
-            value.data.deleteClassAssoc.class_assoc_code +
-            'for party:' +
-            value.data.deleteClassAssoc.party_ref
+              value.data.deleteClassAssoc.class_assoc_code +
+              'for party:' +
+              value.data.deleteClassAssoc.party_ref
           );
         },
         (error) => {
@@ -1111,12 +1134,12 @@ export class PartyService {
   public getPartyClassAssocCols() {
     const cols = [
       { headerName: 'Assoc', field: 'class_assoc_code' },
-      { headerName: 'code_type', field: 'code_type' },
-      { headerName: 'class_1', field: 'class_1' },
-      { headerName: 'code_1', field: 'code_1' },
-      { headerName: 'class_2', field: 'class_2' },
-      { headerName: 'code_2', field: 'code_2' },
-      { headerName: 'applied', field: 'applied' },
+      { headerName: 'Code Type', field: 'code_type' },
+      { headerName: '1st Class', field: 'class_1' },
+      { headerName: '1st Code', field: 'code_1' },
+      { headerName: '2nd Class', field: 'class_2' },
+      { headerName: '2nd Code', sfield: 'code_2' },
+      { headerName: 'Applied', field: 'applied' },
       { headerName: 'Version', field: 'version_no' },
       {
         headerName: 'Date Updated',
@@ -1162,9 +1185,9 @@ export class PartyService {
       (value) => {
         this.snackService.showMessage(
           'Created :' +
-          value.data.createNetting.net_driver +
-          ' netting for party:' +
-          value.data.createNetting.party_ref
+            value.data.createNetting.net_driver +
+            ' netting for party:' +
+            value.data.createNetting.party_ref
         );
       },
       (error) => {
@@ -1178,14 +1201,14 @@ export class PartyService {
       (value) => {
         this.snackService.showMessage(
           'Updated :' +
-          value.data.updateNetting.net_driver +
-          ' ' +
-          value.data.updateNetting.settle_code +
-          ' ' +
-          value.data.updateNetting.transaction_type +
-          ' ' +
-          ' netting for party:' +
-          value.data.updateNetting.party_ref
+            value.data.updateNetting.net_driver +
+            ' ' +
+            value.data.updateNetting.settle_code +
+            ' ' +
+            value.data.updateNetting.transaction_type +
+            ' ' +
+            ' netting for party:' +
+            value.data.updateNetting.party_ref
         );
       },
       (error) => {
@@ -1212,14 +1235,14 @@ export class PartyService {
         (value) => {
           this.snackService.showMessage(
             'Deleted :' +
-            value.data.deleteNetting.net_driver +
-            ' ' +
-            value.data.deleteNetting.settle_code +
-            ' ' +
-            value.data.deleteNetting.transaction_type +
-            ' ' +
-            ' netting for party:' +
-            value.data.deleteNetting.party_ref
+              value.data.deleteNetting.net_driver +
+              ' ' +
+              value.data.deleteNetting.settle_code +
+              ' ' +
+              value.data.deleteNetting.transaction_type +
+              ' ' +
+              ' netting for party:' +
+              value.data.deleteNetting.party_ref
           );
         },
         (error) => {
@@ -1523,9 +1546,9 @@ export class PartyService {
   public getGlossCodeByClass(codeType: number) {
     return this.http.get(
       localStorage.getItem('gloss_uri') +
-      '/api/glosscodes' +
-      '?codeType=' +
-      codeType,
+        '/api/glosscodes' +
+        '?codeType=' +
+        codeType,
       this.httpOptions
     );
   }
@@ -1533,9 +1556,9 @@ export class PartyService {
   public getGlossPartyByType(partyType: string) {
     return this.http.get(
       localStorage.getItem('gloss_uri') +
-      '/api/by-type' +
-      '?partyType=' +
-      partyType.trim(),
+        '/api/by-type' +
+        '?partyType=' +
+        partyType.trim(),
       this.httpOptions
     );
   }
@@ -1543,19 +1566,27 @@ export class PartyService {
   public getGlossDepotAlias(partyRef: string, depotNostroType: string) {
     return this.http.get(
       localStorage.getItem('gloss_uri') +
-      '/api/depot-alias-by-ref?partyRef=' +
-      partyRef.trim() +
-      '&depotNostroType=' +
-      depotNostroType,
+        '/api/depot-alias-by-ref?partyRef=' +
+        partyRef.trim() +
+        '&depotNostroType=' +
+        depotNostroType,
       this.httpOptions
     );
   }
 
   // Dpm Party
 
-  public getdpmPartyByType(partyType: string, clientRef: string, componentType: string) {
+  public getdpmPartyByType(
+    partyType: string,
+    clientRef: string,
+    componentType: string
+  ) {
     return this.getdpmPartyByTypeGQL
-      .watch({ party_type: partyType, client_ref: clientRef, component_type: componentType })
+      .watch({
+        party_type: partyType,
+        client_ref: clientRef,
+        component_type: componentType,
+      })
       .valueChanges.pipe(map((result) => result.data.dpmPartyByType));
   }
 
@@ -1586,11 +1617,14 @@ export class PartyService {
       .valueChanges.pipe(map((result) => result.data.dpmParty));
   }
 
-  public getdpmPartyByComponentAndClient(componentType: string, clientRef: string) {
+  public getdpmPartyByComponentAndClient(
+    componentType: string,
+    clientRef: string
+  ) {
     return this.getdpmPartyByClientGQL
       .watch({
         component_type: componentType,
-        client_ref: clientRef
+        client_ref: clientRef,
       })
       .valueChanges.pipe(map((result) => result.data.dpmPartyByClient));
   }
@@ -1667,17 +1701,24 @@ export class PartyService {
         component_type: componentType,
         company_ref: this.getDpmCompanyRef(),
         environment: envRef,
-      }).subscribe((value) => {
+      })
+      .subscribe((value) => {
         if (componentType === 'JASDEC') {
           this.http
-            .post(localStorage.getItem('jasdec_uri') + '/api/companyconfig', value.data.savedpmconfigdefpushed)
+            .post(
+              localStorage.getItem('jasdec_uri') + '/api/companyconfig',
+              value.data.savedpmconfigdefpushed
+            )
             .subscribe((message) => {
               this.snackService.showMessage(message.toString());
             });
         }
         if (componentType === 'BOJ') {
           this.http
-            .post(localStorage.getItem('boj_uri') + '/api/companyconfig', value.data.savedpmconfigdefpushed)
+            .post(
+              localStorage.getItem('boj_uri') + '/api/companyconfig',
+              value.data.savedpmconfigdefpushed
+            )
             .subscribe((message) => {
               this.snackService.showMessage(message.toString());
             });
@@ -1917,7 +1958,7 @@ export class PartyService {
     this.createdpmAccountExtRefGQL.mutate({ data }).subscribe((value) => {
       this.snackService.showMessage(
         'Created Account ext ref ' +
-        value.data.createdpmAccountExtRef.company_ref
+          value.data.createdpmAccountExtRef.company_ref
       );
     });
   }
@@ -2278,7 +2319,8 @@ export class PartyService {
           this.http
             .post(
               localStorage.getItem('jasdec_uri') + '/api/filesstatic',
-              value.data.savefilesStaticpushed)
+              value.data.savefilesStaticpushed
+            )
             .subscribe((message) => {
               this.snackService.showMessage(message.toString());
             });
@@ -2287,7 +2329,8 @@ export class PartyService {
           this.http
             .post(
               localStorage.getItem('boj_uri') + '/api/filesstatic',
-              value.data.savefilesStaticpushed)
+              value.data.savefilesStaticpushed
+            )
             .subscribe((message) => {
               this.snackService.showMessage(message.toString());
             });
@@ -2430,18 +2473,14 @@ export class PartyService {
       .valueChanges.pipe(map((result) => result.data.configDefEntries));
   }
 
-  public updateConfigDef(
-    data: glossApi.ConfigDefInput
-  ) {
+  public updateConfigDef(data: glossApi.ConfigDefInput) {
     this.updateConfigDefGQL
       .mutate({
         data,
       })
       .subscribe(
         (value) => {
-          this.snackService.showMessage(
-            'Updated Config:'
-          );
+          this.snackService.showMessage('Updated Config:');
         },
         (error) => {
           this.snackService.showMessage(error.message);
@@ -2454,7 +2493,9 @@ export class PartyService {
       if (componentType === 'JASDEC') {
         this.http
           .post(
-            localStorage.getItem('jasdec_uri') + '/api/configdefstatic', value)
+            localStorage.getItem('jasdec_uri') + '/api/configdefstatic',
+            value
+          )
           .subscribe((message) => {
             this.snackService.showMessage(message.toString());
           });
@@ -2576,17 +2617,17 @@ export class PartyService {
     if (componentType === 'JASDEC')
       return this.http.get(
         localStorage.getItem('jasdec_uri') +
-        '/api/dpmcodes' +
-        '?classValue=' +
-        classValue,
+          '/api/dpmcodes' +
+          '?classValue=' +
+          classValue,
         this.httpOptions
       );
     else
       return this.http.get(
         localStorage.getItem('boj_uri') +
-        '/api/dpmcodes' +
-        '?classValue=' +
-        classValue,
+          '/api/dpmcodes' +
+          '?classValue=' +
+          classValue,
         this.httpOptions
       );
   }
@@ -2595,9 +2636,9 @@ export class PartyService {
     // if (componentType === 'JASDEC')
     return this.http.get(
       localStorage.getItem('jasdec_uri') +
-      '/api/dpmclasses' +
-      '?classValue=' +
-      classValue,
+        '/api/dpmclasses' +
+        '?classValue=' +
+        classValue,
       this.httpOptions
     );
     /*else
@@ -2641,14 +2682,11 @@ export class PartyService {
       });
   }
 
-  public deleteTeTemplate(
-    componentType: string,
-    templateType: string
-  ) {
+  public deleteTeTemplate(componentType: string, templateType: string) {
     this.deleteTeTemplateGQL
       .mutate({
         component_type: componentType,
-        template_type: templateType
+        template_type: templateType,
       })
       .subscribe((value) => {
         this.snackService.showMessage(
@@ -2674,5 +2712,4 @@ export class PartyService {
     ];
     return cols;
   }
-
 }

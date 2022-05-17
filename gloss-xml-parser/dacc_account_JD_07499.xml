@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:Party xmlns:p="broadridge:spsi:gloss:Party" xmlns:pa="broadridge:spsi:gloss:PartyAccount" xmlns:pc="broadridge:spsi:gloss:Configuration" xmlns:c="broadridge:spsi:gloss:Common">
+    <p:Type>DACC</p:Type>
+    <p:Origin>EXCL</p:Origin>
+    <p:OriginReference>JD-07499</p:OriginReference>
+    <p:OriginVersion>44012601714</p:OriginVersion>
+    <p:DefaultTimeZone>UTC</p:DefaultTimeZone>
+    <p:Name>JD-07499</p:Name>
+    <p:LongName>JD-07499</p:LongName>
+    <p:ExtraLongName>JD-07499</p:ExtraLongName>
+    <p:Inactive>false</p:Inactive>
+    <p:Classification>
+        <c:Type>LOCN</c:Type>
+        <p:Classification>TOK</p:Classification>
+    </p:Classification>
+    <p:Classification>
+        <c:Type>CTRY</c:Type>
+        <p:Classification>JP</p:Classification>
+    </p:Classification>
+    <p:Reference>
+        <c:Type>INT</c:Type>
+        <p:Reference>JD-07499</p:Reference>
+    </p:Reference>
+    <p:Association>
+        <c:Type>ASDP</c:Type>
+        <p:Party>
+            <c:Type>INT</c:Type>
+            <c:Value>JJSDJPJT</c:Value>
+        </p:Party>
+    </p:Association>
+</p:Party>
