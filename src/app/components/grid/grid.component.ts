@@ -12,7 +12,8 @@ import {
 import { MenuBarService } from 'app/services/menu.bar.service';
 import { PartyService } from 'app/services/party.service';
 import { CheckboxRenderer } from './checkbox-renderer.component';
-import { DndComponent } from './dnd/dnd.component';
+import { DndComponent } from './loadxmldnd/dnd.component';
+import { DndJSONComponent } from './loadjsondnd/dnd.json.component';
 
 @Component({
   selector: 'grid',
@@ -30,6 +31,14 @@ import { DndComponent } from './dnd/dnd.component';
           </button>
           <button
             mat-flat-button
+            (click)="onBtnImportJsonFile()"
+            matTooltip="Upload JSON"
+          >
+            <mat-icon [svgIcon]="'mat_outline:upload'"></mat-icon>
+            Upload JSON
+          </button>
+          <button
+            mat-flat-button
             (click)="onBtnImport()"
             matTooltip="Upload XML Party"
           >
@@ -37,13 +46,7 @@ import { DndComponent } from './dnd/dnd.component';
             Drag and Drop XML
           </button>
         </span>
-        <span>
-          <button #selectFile mat-flat-button matTooltip="Upload JSON">
-            <mat-icon [svgIcon]="'mat_outline:upload'"></mat-icon>
-            Upload JSON
-          </button></span
-        >
-        <span><input type="file" (change)="onFileSelect($event)" /> </span>
+        <!-- <span><input type="file" (change)="onFileSelect($event)" /> </span> -->
       </mat-toolbar>
     </div>
     <ag-grid-angular
@@ -200,7 +203,11 @@ export class GridComponent implements OnInit {
   }
 
   onBtnImport() {
-    this.openDialog();
+    this.openXMLDialog();
+  }
+
+  onBtnImportJsonFile() {
+    this.openJSONDialog();
   }
 
   onFileSelect(event) {
@@ -212,7 +219,7 @@ export class GridComponent implements OnInit {
     fileReader.readAsText(selectedFile);
   }
 
-  openDialog() {
+  openXMLDialog() {
     const dialogRef = this.matDialog.open(DndComponent, {
       width: '500px',
     });
@@ -230,6 +237,29 @@ export class GridComponent implements OnInit {
           break;
       }
     });
+  }
+
+  openJSONDialog() {
+    const dialogRef = this.matDialog.open(DndJSONComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === undefined) {
+        result = { event: 'Cancel' };
+      }
+      switch (result.event) {
+        case 'Create':
+          this.loadjson(result.data);
+          break;
+        case 'Cancel':
+          break;
+      }
+    });
+  }
+
+  loadjson(data: any) {
+    console.log(`Create`);
   }
 
   create(data: any) {

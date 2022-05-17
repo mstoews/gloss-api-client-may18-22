@@ -6,7 +6,7 @@ import { ModalService } from './modal.service';
     // tslint:disable-next-line: component-selector
     selector: 'jw-modal',
     templateUrl: 'modal.component.html',
-    styleUrls: ['modal.component.less'],
+    styleUrls: ['modal.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit, OnDestroy {

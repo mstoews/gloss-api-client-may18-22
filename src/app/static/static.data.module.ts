@@ -68,9 +68,10 @@ import { StaticRoutingModule } from './static.data-routing.module';
 import { TeTemplateFormComponent } from './te/te-template-form';
 import { TETemplateComponent } from './te/te-template.component';
 import { DpmPartyCloneFormComponent } from './dpm/forms/dpmparty.clone.form';
-import { DndComponent } from '../components/grid/dnd/dnd.component';
-import { DndDirective } from '../components/grid/dnd/dnd.directive';
+import { DndComponent } from '../components/grid/loadxmldnd/dnd.component';
+import { DndDirective } from '../components/grid/loadxmldnd/dnd.directive';
 import { ProgressComponent } from '../components/progress/progress.component';
+import { DndJSONComponent } from 'app/components/grid/loadjsondnd/dnd.json.component';
 
 @NgModule({
   declarations: [
@@ -148,7 +149,8 @@ import { ProgressComponent } from '../components/progress/progress.component';
     TeTemplateFormComponent,
     DndComponent,
     DndDirective,
-    ProgressComponent
+    ProgressComponent,
+    DndJSONComponent
   ],
   imports: [
     CommonModule,

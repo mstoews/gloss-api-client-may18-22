@@ -1,3 +1,4 @@
+<mat-card>
 <div *ngIf="loading == true">
   <mat-spinner></mat-spinner>
 </div>
@@ -10,7 +11,7 @@
             ACM Settlement Instructions
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-form-field>
+        <mat-form-field >
           <mat-label>COBC - Company to Bureau Client Association</mat-label>
           <mat-select formControlName="glossCodeCOBC5043Configured" (selectionChange)="updateCOBCassoc()">
             <mat-option *ngFor="let glossCode of glossCodes5043" [value]="glossCode.p2000Code">
@@ -858,3 +859,4 @@
     </mat-accordion>
   </form>
 </div>
+</mat-card>
