@@ -68,10 +68,7 @@ import { StaticRoutingModule } from './static.data-routing.module';
 import { TeTemplateFormComponent } from './te/te-template-form';
 import { TETemplateComponent } from './te/te-template.component';
 import { DpmPartyCloneFormComponent } from './dpm/forms/dpmparty.clone.form';
-import { DndComponent } from '../components/grid/loadxmldnd/dnd.component';
-import { DndDirective } from '../components/grid/loadxmldnd/dnd.directive';
-import { ProgressComponent } from '../components/progress/progress.component';
-import { DndJSONComponent } from 'app/components/grid/loadjsondnd/dnd.json.component';
+import { GridAGModule } from '../components/grid/gridAG.module';
 
 @NgModule({
   declarations: [
@@ -144,13 +141,8 @@ import { DndJSONComponent } from 'app/components/grid/loadjsondnd/dnd.json.compo
 
     JasdecConfigDefStepperComponent,
     BojConfigDefStepperComponent,
-
     TETemplateComponent,
     TeTemplateFormComponent,
-    DndComponent,
-    DndDirective,
-    ProgressComponent,
-    DndJSONComponent
   ],
   imports: [
     CommonModule,
@@ -159,6 +151,7 @@ import { DndJSONComponent } from 'app/components/grid/loadjsondnd/dnd.json.compo
     ReactiveFormsModule,
     StaticRoutingModule,
     MatStepperModule,
+    GridAGModule
   ],
 })
 export class StaticDataModule { }

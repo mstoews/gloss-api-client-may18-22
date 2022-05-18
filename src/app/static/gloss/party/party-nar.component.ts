@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { PartyNarrativeInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
 import { PartyNarrativeFormComponent } from '../forms/party.narrative.form.component';
@@ -8,7 +8,7 @@ import { PartyNarrativeFormComponent } from '../forms/party.narrative.form.compo
 @Component({
   selector: 'app-party-narr',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class PartyNarrativeComponent implements OnInit {
   constructor(public dialog: MatDialog, public partyService: PartyService) {}

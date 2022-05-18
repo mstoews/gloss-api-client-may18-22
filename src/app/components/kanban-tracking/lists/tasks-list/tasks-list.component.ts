@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { KanbanTaskFormComponent } from '../../kanban-card/kanban-form/kanban.task.form';
+import { KanbanTaskFormComponent } from '../../kanban-form/kanban.task.form';
 import { Observable } from 'rxjs';
 import { KanbanService } from '../../module/kanban.service';
 import { KanbanRefService } from '../../module/kanban-party-ref.service';

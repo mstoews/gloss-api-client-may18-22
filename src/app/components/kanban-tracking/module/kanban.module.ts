@@ -6,7 +6,7 @@ import { KanbanBoardComponent } from '../kanban-card/kanban.board.component';
 import { KanbanMenubarComponent } from '../kanban-menubar/menubar.component';
 import { KanbanGroupComponent } from '../kanban-group/kanban.group.component';
 import { KanbanMainComponent } from '../kanban-main/kanban.main.component';
-import { KanbanTaskFormComponent } from '../kanban-card/kanban-form/kanban.task.form';
+import { KanbanTaskFormComponent } from '../kanban-form/kanban.task.form';
 import { TypeListComponent } from '../lists/type-list/type-list.component';
 import { PriorityListComponent } from '../lists/priority-list/priority-list.component';
 import { StatusListComponent } from '../lists/status-list/status-list.component';

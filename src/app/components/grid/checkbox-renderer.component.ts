@@ -20,8 +20,8 @@ export class CheckboxRenderer {
   }
 
   checkedHandler(event) {
-    let checked = event.target.checked;
-    let colId = this.params.column.colId;
+    const checked = event.target.checked;
+    const colId = this.params.column.colId;
     this.params.node.setDataValue(colId, checked);
   }
 }

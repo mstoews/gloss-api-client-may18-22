@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { DpmPartyExtRefInput } from 'app/services/api.service';
 import { SnackService } from 'app/services/snack.service';
 import { DpmPartyRefFormComponent } from 'app/static/dpm/forms/dpm.party.ref.form.component';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-dpmparty-extref',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class DpmPartyExtRefComponent implements OnInit {
   constructor(

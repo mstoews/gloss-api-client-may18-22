@@ -11,7 +11,7 @@ import { KanbanService } from '../module/kanban.service';
 import { Subscription } from 'rxjs';
 import { ITask, IBoard } from '../module/tasks.model';
 import { MatDialog } from '@angular/material/dialog';
-import { KanbanTaskFormComponent } from './kanban-form/kanban.task.form';
+import { KanbanTaskFormComponent } from '../kanban-form/kanban.task.form';
 import { PartyService } from 'app/services/party.service';
 import { KanbanRefService } from '../module/kanban-party-ref.service';
 

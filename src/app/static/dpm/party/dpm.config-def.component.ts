@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { DpmConfigDefInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
 import { SnackService } from 'app/services/snack.service';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-dpmconfig-def',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class DpmConfigDefComponent implements OnInit {
   constructor(

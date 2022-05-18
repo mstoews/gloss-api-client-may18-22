@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output, ChangeDetectorRef, Inject, Optional } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IKanbanTask } from '../kanban-card/kanban-form/kanban.task.form';
+import { IKanbanTask } from '../kanban-form/kanban.task.form';
 import { KanbanService } from '../module/kanban.service';
 
 

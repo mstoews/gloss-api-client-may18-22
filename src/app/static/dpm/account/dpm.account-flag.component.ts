@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { DpmAccountFlagInput } from 'app/services/api.service';
 import { SnackService } from 'app/services/snack.service';
 import { DpmAccountFlagFormComponent } from 'app/static/dpm/forms/dpm.account.flag.form.component';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-dpmaccount-flag',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class DpmAccountFlagComponent implements OnInit {
   constructor(

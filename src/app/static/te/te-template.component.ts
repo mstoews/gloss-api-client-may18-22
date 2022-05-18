@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { TeTemplateInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
 import { TeTemplateFormComponent } from './te-template-form';
@@ -23,7 +23,7 @@ import { TeTemplateFormComponent } from './te-template-form';
       </grid>
     </ng-container>
   `,
-  providers: [GridComponent],
+  providers: [],
 })
 export class TETemplateComponent implements OnInit {
   constructor(public dialog: MatDialog, public partyService: PartyService) {}

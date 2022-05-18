@@ -27,17 +27,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { MenuBarService } from 'app/services/menu.bar.service';
-import { GridComponent } from '../components/grid/grid.component';
 import { MenubarComponent } from '../components/menubar/menubar.component';
 
 import { ShellComponent } from './shell.component';
 import { NavItemComponent } from './static-sidebar/nav-list-item/nav-item.component';
 import { StaticSidebarComponent } from './static-sidebar/static-sidebar.component';
+import { GridAGModule } from '../components/grid/gridAG.module';
 
 const components = [
   ShellComponent,
   StaticSidebarComponent,
-  GridComponent,
   MenubarComponent,
   NavItemComponent,
 ];
@@ -72,7 +71,9 @@ const modules = [
   MatTooltipModule,
   AgGridModule,
   MatProgressSpinnerModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  GridAGModule
+
 ];
 
 @NgModule({

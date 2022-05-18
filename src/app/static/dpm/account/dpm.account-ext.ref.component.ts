@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { DpmAccountExtRefInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
 import { SnackService } from 'app/services/snack.service';
@@ -10,7 +10,7 @@ import { DpmAccountRefFormComponent } from 'app/static/dpm/forms/dpm.account.ref
 @Component({
   selector: 'app-dpmaccount-extref',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class DpmAccountExtRefComponent implements OnInit {
   constructor(

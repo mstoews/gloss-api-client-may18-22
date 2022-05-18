@@ -2,8 +2,16 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PartyService } from 'app/services/party.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { XMLParser } from 'fast-xml-parser';
 import { SnackService } from '../../../services/snack.service';
+import { XMLParser } from 'fast-xml-parser';
+import {
+  IParty,
+  Flag,
+  Classification,
+  Narrative,
+  Association,
+  Instrument,
+} from '../loadxmldnd/model.type';
 
 const options = {
   ignoreAttributes: true,
@@ -54,6 +62,22 @@ export class DndJSONComponent {
     this.files.splice(index, 1);
   }
 
+  uploadFileProgress(index: number) {
+    setTimeout(() => {
+      if (index === this.files.length) {
+        return;
+      } else {
+        const progressInterval = setInterval(() => {
+          if (this.files[index].progress === 100) {
+            clearInterval(progressInterval);
+            this.uploadFileProgress(index + 1);
+          } else {
+            this.files[index].progress += 5;
+          }
+        }, 4);
+      }
+    }, 10);
+  }
   uploadFilesSimulator(index: number) {
     setTimeout(() => {
       if (index === this.files.length) {
@@ -81,10 +105,15 @@ export class DndJSONComponent {
   }
 
   onCreate() {
+    let data: any;
     for (const item of this.files) {
       const reader = new FileReader();
       reader.onload = (e) => {
         const fileString = e.target.result as string;
+        const parser = new XMLParser(options);
+        data = parser.parse(fileString) as any;
+        this.processFileDataFromJson(data);
+
       };
       reader.readAsText(item);
       reader.onerror = this.errorHandler;
@@ -100,8 +129,6 @@ export class DndJSONComponent {
     }
   }
 
-  closeDialog() {}
-
   updateProgress(evt: any) {
     if (evt.lengthComputable) {
       // evt.loaded and evt.total are ProgressEvent properties
@@ -110,5 +137,28 @@ export class DndJSONComponent {
         this.uploadFilesSimulator(loaded);
       }
     }
+  }
+
+  async processFileDataFromJson(filedata: any) {
+    console.log('Process a file');
+    const data = JSON.parse(filedata);
+    for (const element of data) {
+      this.partyService.createdatabase(element);
+    }
+  }
+
+  closeDialog() {
+    this.dialogRef.close({ event: 'Cancel' });
+  }
+
+formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) {
+      return '0 Bytes';
+    }
+    const k = 1024;
+    const dm = decimals <= 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 }

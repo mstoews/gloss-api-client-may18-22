@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PartySsiInput } from 'app/services/api.service';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { PartySsiFormComponent } from '../forms/party.ssi.form';
 import { PartyService } from 'app/services/party.service';
 
 @Component({
   selector: 'app-party-ssi',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class PartySsiComponent implements OnInit {
   constructor(public dialog: MatDialog, public partyService: PartyService) {}

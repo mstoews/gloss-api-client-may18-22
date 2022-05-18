@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { JsdcFileDefInput } from 'app/services/api.service';
 import { SnackService } from 'app/services/snack.service';
 import { JsdcFileDefFormComponent } from 'app/static/dpm/forms/jsdcfiledef.form.component';
@@ -30,7 +30,7 @@ import { FilesCloneFormComponent } from './forms/files.clone.form.component';
       </grid>
     </ng-container>
   `,
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class JsdcFileDefComponent implements OnInit {
   constructor(

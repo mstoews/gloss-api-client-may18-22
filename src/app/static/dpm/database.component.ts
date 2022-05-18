@@ -5,7 +5,7 @@ import { DatabasesInput } from 'app/services/api.service';
 import { SnackService } from 'app/services/snack.service';
 import { DatabaseFormComponent } from 'app/static/dpm/forms/database.form.component';
 import { PartyService } from 'app/services/party.service';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 
 @Component({
   selector: 'app-database',
@@ -29,7 +29,7 @@ import { GridComponent } from 'app/components/grid/grid.component';
       </grid>
     </ng-container>
   `,
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class DatabaseComponent implements OnInit {
   constructor(

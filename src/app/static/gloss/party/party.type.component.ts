@@ -4,7 +4,7 @@ import { PartyService } from 'app/services/party.service';
 import { SnackService } from 'app/services/snack.service';
 import { Observable } from 'rxjs';
 import { PartyFormComponent } from '../forms/party.form.component';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 
 @Component({
   selector: 'app-party-type',
@@ -19,7 +19,7 @@ import { GridComponent } from 'app/components/grid/grid.component';
       </grid>
     </ng-container>
   `,
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class PartyTypeComponent implements OnInit {
   partyGql$: Observable<any>;

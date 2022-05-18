@@ -76,7 +76,7 @@ import { DndJSONComponent } from './loadjsondnd/dnd.json.component';
   `,
   styleUrls: ['./grid.component.scss'],
 })
-export class GridComponent implements OnInit {
+export class GridAGComponent implements OnInit {
   frameworkComponents;
   progress = 0;
   timer: number;

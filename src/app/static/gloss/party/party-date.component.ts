@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PartyDateInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { PartyDateFormComponent } from '../forms/party.date.form.component';
 
 @Component({
   selector: 'app-party-date',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  providers: [],
 })
 export class PartyDateComponent implements OnInit {
   constructor(public dialog: MatDialog, public partyService: PartyService) {}

@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 import moment from 'moment';
 import { Subject, Subscription } from 'rxjs';
-import { KanbanService } from '../../module/kanban.service';
+import { KanbanService } from '../module/kanban.service';
 
 interface IValue {
     value: string;

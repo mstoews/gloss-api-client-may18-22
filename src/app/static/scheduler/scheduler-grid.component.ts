@@ -4,7 +4,7 @@ import {
   DpmSchedulerInput,
   GlossSchedulerInput,
 } from 'app/services/api.service';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { PartyService } from 'app/services/party.service';
 import { DpmSchedulerFormComponent } from '../dpm/forms/dpm.scheduler.form.component';
 import { GlossSchedulerFormComponent } from '../gloss/forms/gloss.scheduler.form.component';
@@ -12,7 +12,7 @@ import { GlossSchedulerFormComponent } from '../gloss/forms/gloss.scheduler.form
 @Component({
   selector: 'app-scheduler-grid',
   templateUrl: '../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class SchedulerGridComponent implements OnInit {
   constructor(public dialog: MatDialog, private partyService: PartyService) {}

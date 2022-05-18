@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { PartySwiftInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
 import { PartySwiftFormComponent } from './party.swift.form.component';
@@ -8,7 +8,7 @@ import { PartySwiftFormComponent } from './party.swift.form.component';
 @Component({
   selector: 'app-party-swift',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class SwiftGridComponent implements OnInit {
   constructor(public dialog: MatDialog, private partyService: PartyService) {}

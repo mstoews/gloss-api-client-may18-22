@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PartyExtRefInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { PartyRefFormComponent } from '../forms/party.ref.form.component';
 
 @Component({
   selector: 'app-party-extref',
   templateUrl: '../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class PartyExtRefComponent implements OnInit {
   constructor(public dialog: MatDialog, public partyService: PartyService) {}

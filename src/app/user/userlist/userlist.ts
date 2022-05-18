@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { AuthService } from 'app/services/auth.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthService } from 'app/services/auth.service';
       </grid>
     </ng-container>
   `,
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class UserListComponent implements OnInit {
   cols = this.afAuth.getUserListCols();

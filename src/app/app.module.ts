@@ -16,7 +16,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
-import { GridComponent } from './components/grid/grid.component';
 import { IntroComponent } from './components/intro/intro.component';
 import { GraphQLModule } from './graphql.module';
 import { IconsModule } from './icons.module';
@@ -32,6 +31,7 @@ import { NavService } from './shell/static-sidebar/nav-list-item/nav-service';
 import { MenuService } from './services/menu.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerService } from './components/spinner/spinner.service';
+import { GridAGModule } from './components/grid/gridAG.module';
 
 ModuleRegistry.registerModules(AllCommunityModules);
 @NgModule({
@@ -52,6 +52,7 @@ ModuleRegistry.registerModules(AllCommunityModules);
     UserModule,
     IconsModule,
     MatStepperModule,
+    GridAGModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
@@ -60,7 +61,7 @@ ModuleRegistry.registerModules(AllCommunityModules);
       logOnly: environment.production,
     }),
   ],
-  exports: [GridComponent],
+  exports: [],
   providers: [
     AuthService,
     PartyService,

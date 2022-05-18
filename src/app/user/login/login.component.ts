@@ -5,6 +5,7 @@ import { AuthService } from 'app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styles: ['h1 { font-weight: normal; } .mat-card {width: 400px; }']
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;

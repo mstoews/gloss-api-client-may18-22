@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NettingInput } from 'app/services/api.service';
 import { SnackService } from 'app/services/snack.service';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { PartyService } from 'app/services/party.service';
 import { NettingStepperComponent } from './netting-stepper.component';
 
 @Component({
   selector: 'app-party-netting',
   templateUrl: '../../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class NettingGridComponent implements OnInit {
   constructor(

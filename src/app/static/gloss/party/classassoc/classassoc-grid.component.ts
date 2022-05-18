@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ClassAssocInput } from 'app/services/api.service';
 import { PartyService } from 'app/services/party.service';
-import { GridComponent } from 'app/components/grid/grid.component';
+// import { GridComponent } from 'app/components/grid/grid.component';
 import { ClassAssocFormComponent } from '../../forms/classassoc.form.component';
 
 @Component({
   selector: 'app-party-classassoc',
   templateUrl: '../../../generic-grid.html',
-  providers: [GridComponent],
+  // providers: [GridComponent],
 })
 export class ClassAssocGridComponent implements OnInit {
   constructor(public dialog: MatDialog, public partyService: PartyService) {}
