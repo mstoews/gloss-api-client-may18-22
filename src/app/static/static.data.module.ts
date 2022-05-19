@@ -68,7 +68,6 @@ import { StaticRoutingModule } from './static.data-routing.module';
 import { TeTemplateFormComponent } from './te/te-template-form';
 import { TETemplateComponent } from './te/te-template.component';
 import { DpmPartyCloneFormComponent } from './dpm/forms/dpmparty.clone.form';
-import { GridAGModule } from '../components/grid/gridAG.module';
 
 @NgModule({
   declarations: [
@@ -151,7 +150,6 @@ import { GridAGModule } from '../components/grid/gridAG.module';
     ReactiveFormsModule,
     StaticRoutingModule,
     MatStepperModule,
-    GridAGModule
   ],
 })
-export class StaticDataModule { }
+export class StaticDataModule {}

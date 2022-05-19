@@ -23,7 +23,7 @@ import { TreeComponent } from '../lists/dx-tree/dx-tree.component';
 import { KanbanService } from '../module/kanban.service';
 import { KanbanCommonModule } from './kanban.common.module';
 import { KanbanRefService } from './kanban-party-ref.service';
-
+import { GridAGModule } from '../../grid/gridAG.module';
 
 const routes: Routes = [
   {
@@ -60,7 +60,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    KanbanCommonModule
+    KanbanCommonModule,
+    GridAGModule
   ],
   exports: [KanbanCommonModule],
   entryComponents: [KanbanMainComponent],

@@ -69,6 +69,8 @@ import { DndJSONComponent } from './loadjsondnd/dnd.json.component';
       (cellValueChanged)="onCellValueChanged($event)"
       [frameworkComponents]="frameworkComponents"
       (gridReady)="onGridReady($event)"
+      [paginationPageSize]="paginationPageSize"
+      [pagination]="true"
     >
     </ag-grid-angular>
     <mat-progress-spinner mode="determinate" [value]="progress">
@@ -108,6 +110,7 @@ export class GridAGComponent implements OnInit {
   public colDef: any;
   // public autoGroupColumnDef: { minWidth: number; };
   public modules: any[] = [ClientSideRowModelModule];
+  public paginationPageSize = 15;
   // public getRowNodeId;
 
   @Input() public cols: any[];

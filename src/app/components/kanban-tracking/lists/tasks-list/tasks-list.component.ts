@@ -54,7 +54,17 @@ export type Query = {
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'tasks-list',
-  templateUrl: './tasks-list.component.html',
+  // templateUrl: './tasks-list.component.html',
+  template: `
+  <ng-container *ngIf="task | async as rows">
+    <grid
+      [cols]="cols"
+      [rows]="rows"
+      (notifyOpenDialog)="onNotify($event)"
+    >
+    </grid>
+  </ng-container>
+`,
 })
 export class TasksListComponent implements OnInit {
   allowDropInsideItem = true;
@@ -62,10 +72,11 @@ export class TasksListComponent implements OnInit {
   showDragIcons = true;
   expandedRowKeys: Array<number> = [1];
   selectedTask: ITask;
-  taskGql!: Observable<ITask[]>;
+  task!: Observable<ITask[]>;
 
   @Input() public partyType = 'COMP';
   @Input() public partyRef = 'JPTC';
+  cols: any;
 
   constructor(
     public dialog: MatDialog,
@@ -80,15 +91,16 @@ export class TasksListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.taskGql = this.kanbanService.getKanbanTaskByRef(this.partyRef);
+    this.task = this.kanbanService.getKanbanTaskByRef(this.partyRef);
+    this.cols = this.kanbanService.getTaskCols();
   }
 
   public refreshData() {
-    this.taskGql = this.kanbanService.getKanbanTaskByRef(this.partyRef);
+    this.task = this.kanbanService.getKanbanTaskByRef(this.partyRef);
   }
 
   public refreshDataByRef(partyRef: string) {
-    this.taskGql = this.kanbanService.getKanbanTaskByRef(partyRef);
+    this.task = this.kanbanService.getKanbanTaskByRef(partyRef);
   }
 
   selectTask(e) {

@@ -15,14 +15,26 @@ export interface StatusType  {
 
 @Component({
   selector: 'status-list',
-  templateUrl: './status-list.component.html'
+  // templateUrl: './status-list.component.html',
+  template: `
+  <ng-container *ngIf="status | async as rows">
+    <grid
+      [cols]="cols"
+      [rows]="rows"
+      (notifyOpenDialog)="onNotify($event)"
+    >
+    </grid>
+  </ng-container>
+`,
 })
 export class StatusListComponent  {
 
   status!: Observable<StatusType[]>;
+  cols: any;
 
   constructor(private kanbanService: KanbanService)
    {
     this.status = this.kanbanService.getKanbanStatus();
+    this.cols = this.kanbanService.getStatusCols();
   }
 }

@@ -1,4 +1,3 @@
-import { AgGridModule } from '@ag-grid-community/angular';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -69,25 +68,15 @@ const modules = [
   MatRippleModule,
   MatRadioModule,
   MatTooltipModule,
-  AgGridModule,
   MatProgressSpinnerModule,
   MatAutocompleteModule,
-  GridAGModule
-
+  GridAGModule,
 ];
 
 @NgModule({
-  declarations: [
-    ...components,
-  ],
-  imports: [
-    ...modules,
-  ],
-  exports: [
-    ...components,
-    ...modules,
-  ],
-  providers: [ MenuBarService ],
-
+  declarations: [...components],
+  imports: [...modules],
+  exports: [...components, ...modules],
+  providers: [MenuBarService],
 })
-export class SharedModule { }
+export class SharedModule {}

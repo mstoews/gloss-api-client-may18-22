@@ -22,12 +22,23 @@ export type Query = {
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'party-list',
-  templateUrl: './party.component.html',
+  // templateUrl: './party.component.html',
+  template: `
+  <ng-container *ngIf="kanbanList | async as rows">
+    <grid
+      [cols]="cols"
+      [rows]="rows"
+      (notifyOpenDialog)="onNotify($event)"
+    >
+    </grid>
+  </ng-container>
+`,
 })
 export class PartyListComponent {
   kanbanList!: Observable<PartyType[]>;
   partyRef: string;
   clientRef: string;
+  cols: any;
 
   constructor(
     private kanbanService: KanbanService,
@@ -38,8 +49,8 @@ export class PartyListComponent {
     kanbanRefService.kanbanRefUpdated.subscribe((ref) => {
       this.partyRef = ref.getPartyRef();
       this.clientRef = ref.getClientRef();
-      //  console.log ('PartyListComponent: ', this.partyRef);
     });
+    this.cols = this.kanbanService.getPartyCols();
   }
 
   logEvent(e) {

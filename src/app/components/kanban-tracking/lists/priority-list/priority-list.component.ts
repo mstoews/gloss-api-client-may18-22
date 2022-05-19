@@ -15,14 +15,30 @@ export interface PriorityType  {
 }
 @Component({
   selector: 'priority-list',
-  templateUrl: './priority-list.component.html',
+  // templateUrl: './priority-list.component.html',
+  template: `
+    <ng-container *ngIf="priority$ | async as rows">
+      <grid
+        [cols]="cols"
+        [rows]="rows"
+        (notifyOpenDialog)="onNotify($event)"
+      >
+      </grid>
+    </ng-container>
+  `,
 })
-export class PriorityListComponent  {
 
-    priority!: Observable<PriorityType[]>;
+export class PriorityListComponent implements OnInit  {
 
-    constructor(private kanbanService: KanbanService)
-     {
-      this.priority = this.kanbanService.getKanbanPriorities();
+    priority$;
+    cols: any;
+
+    constructor(private kanbanService: KanbanService) {}
+
+    ngOnInit(){
+      this.priority$ = this.kanbanService.getKanbanPriorities();
+      this.cols = this.kanbanService.getPriorityCols();
+      console.log(this.priority$);
     }
-  }
+
+}

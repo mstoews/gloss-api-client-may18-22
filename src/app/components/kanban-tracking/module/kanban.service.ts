@@ -132,4 +132,84 @@ export class KanbanService {
     const dateParts = dateAsString.split('-');
     return `${dateParts[0]} - ${dateParts[1]} - ${dateParts[2].slice(0, 2)}`;
   }
+
+  public getPriorityCols() {
+    const cols = [
+      { headerName: 'Priority', field: 'priority' },
+      { headerName: 'Description', field: 'description' },
+      { headerName: 'User', field: 'updateusr' },
+      {
+        headerName: 'Date Updated',
+        field: 'updatedte',
+        minWidth: 150,
+        filter: 'agDateColumnFilter',
+        valueFormatter: this.dateFormatter,
+      },
+    ];
+    return cols;
+  }
+
+  public getStatusCols() {
+    const cols = [
+      { headerName: 'Priority', field: 'status' },
+      { headerName: 'Description', field: 'description' },
+      { headerName: 'User', field: 'updateusr' },
+      {
+        headerName: 'Date Updated',
+        field: 'updatedte',
+        minWidth: 150,
+        filter: 'agDateColumnFilter',
+        valueFormatter: this.dateFormatter,
+      },
+    ];
+    return cols;
+  }
+
+  public getTypeCols() {
+    const cols = [
+      { headerName: 'Priority', field: 'type' },
+      { headerName: 'Description', field: 'description' },
+      { headerName: 'User', field: 'updateusr' },
+      {
+        headerName: 'Date Updated',
+        field: 'updatedte',
+        minWidth: 150,
+        filter: 'agDateColumnFilter',
+        valueFormatter: this.dateFormatter,
+      },
+    ];
+    return cols;
+  }
+
+  public getPartyCols() {
+    const cols = [
+      { headerName: 'Reference', field: 'party_ref' },
+      { headerName: 'Type', field: 'party_type' },
+      { headerName: 'Short Name', field: 'party_short_name' },
+      { headerName: 'Long Name', field: 'party_long_name' },
+      { headerName: 'Extra Long Name', field: 'party_extra_long_name' },
+      { headerName: 'Date', field: 'version_date' },
+      { headerName: 'User', field: 'version_user' },
+    ];
+    return cols;
+  }
+
+  public getTaskCols() {
+    const cols = [
+      { headerName: 'Task', field: 'task_id' },
+      { headerName: 'Party Ref', field: 'party_ref' },
+      { headerName: 'Title', field: 'title' },
+      { headerName: 'Description', field: 'description' },
+      { headerName: 'Status', field: 'status' },
+      { headerName: 'Summary', field: 'summary' },
+      { headerName: 'Type', field: 'type' },
+      { headerName: 'Priority', field: 'priority' },
+      { headerName: 'Tags', field: 'tags' },
+      { headerName: 'Estimate', field: 'estimate' },
+      { headerName: 'Assignee', field: 'assignee' },
+      { headerName: 'Start Date', field: 'start_date' },
+      { headerName: 'Due Date', field: 'due_date' },
+    ];
+    return cols;
+  }
 }
