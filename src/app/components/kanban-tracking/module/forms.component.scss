@@ -9,10 +9,19 @@ mat-form-field {
   width: 95%;
   font-size: medium;
 }
+
 .ng-valid[required],
 .ng-valid.required {
   border-left: 5px solid #42a948;
 }
+
 .ng-invalid:not(form) {
   border: 5px solid #4942a9;
+}
+
+.mat-card {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
 }

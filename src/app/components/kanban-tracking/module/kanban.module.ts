@@ -11,28 +11,35 @@ import { TypeListComponent } from '../lists/type-list/type-list.component';
 import { PriorityListComponent } from '../lists/priority-list/priority-list.component';
 import { StatusListComponent } from '../lists/status-list/status-list.component';
 import { TasksListComponent } from '../lists/tasks-list/tasks-list.component';
-import { DashboardComponent } from '../pages/dashboard/dashboard.component';
-import { DonutChartComponent } from '../pages/donut-chart/donut-chart.component';
-import { BarLineChartComponent } from '../pages/bar-stacked-chart/bar-stacked-chart.component';
-import { PartyListComponent } from '../lists/party/party.component';
+import { PartyListComponent } from '../lists/party-list/party.component';
 import { GridCssComponent } from '../pages/grid-css/grid-css.component';
-import { ComboLineChartComponent } from '../pages/combo-line-chart/combo-line-chart.component';
-import { JiraDashboardComponent } from '../pages/jira-dashboard/jira-dashboard.component';
-import { GanttComponent } from '../pages/gantt/gantt.component';
-import { TreeComponent } from '../lists/dx-tree/dx-tree.component';
 import { KanbanService } from '../module/kanban.service';
 import { KanbanCommonModule } from './kanban.common.module';
 import { KanbanRefService } from './kanban-party-ref.service';
 import { GridAGModule } from '../../grid/gridAG.module';
+import { DnDTreeComponent } from '../lists/tree-list/dndTree';
+import { TreeModule } from '@circlon/angular-tree-component';
+import { AgChartsAngularModule } from 'ag-charts-angular';
+import { SidenavService } from '../sidenav.service';
+import { PriorityFormComponent } from '../lists/priority-list/priority.form';
+import { TypeFormComponent } from '../lists/type-list/types.form';
+import { StatusFormComponent } from '../lists/status-list/status.form';
+import { KanbanCloneComponent } from '../kanban-form/clone.form';
 
 const routes: Routes = [
   {
-    path : 'kanban', component: KanbanMainComponent,
+    path: 'kanban',
+    component: KanbanMainComponent,
   },
   {
-    path      : '**',
-    redirectTo: 'kanban'
-}
+    path: '',
+    redirectTo: '/kanban',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: KanbanMainComponent,
+  },
 ];
 
 @NgModule({
@@ -46,25 +53,25 @@ const routes: Routes = [
     PriorityListComponent,
     StatusListComponent,
     TasksListComponent,
-    DashboardComponent,
-    DonutChartComponent,
-    BarLineChartComponent,
     PartyListComponent,
     GridCssComponent,
-    ComboLineChartComponent,
-    JiraDashboardComponent,
     KanbanMenubarComponent,
-    GanttComponent,
-    TreeComponent,
+    DnDTreeComponent,
+    PriorityFormComponent,
+    TypeFormComponent,
+    StatusFormComponent,
+    KanbanCloneComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     KanbanCommonModule,
-    GridAGModule
+    GridAGModule,
+    TreeModule,
+    AgChartsAngularModule,
   ],
   exports: [KanbanCommonModule],
   entryComponents: [KanbanMainComponent],
-  providers: [KanbanService, KanbanRefService]
+  providers: [KanbanService, KanbanRefService, SidenavService],
 })
 export class KanbanTasksModule {}

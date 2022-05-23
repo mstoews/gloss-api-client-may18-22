@@ -10,16 +10,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-   path: 'kanban',
-   loadChildren: () =>
-     import('./components/kanban-tracking/module/kanban.module').then((m) => m.KanbanTasksModule),
-     canActivate: [AuthGuard]
+    path: 'kanban',
+    loadChildren: () =>
+      import('./components/kanban-tracking/module/kanban.module').then(
+        (m) => m.KanbanTasksModule
+      ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'static',
     loadChildren: () =>
       import('./static/static.data.module').then((m) => m.StaticDataModule),
-     canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'user',

@@ -32,14 +32,11 @@ import { MenuService } from './services/menu.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SpinnerService } from './components/spinner/spinner.service';
 import { GridAGModule } from './components/grid/gridAG.module';
+import { SidenavService } from './components/kanban-tracking/sidenav.service';
 
 ModuleRegistry.registerModules(AllCommunityModules);
 @NgModule({
-  declarations: [
-    AppComponent,
-    IntroComponent,
-    SpinnerComponent,
-  ],
+  declarations: [AppComponent, IntroComponent, SpinnerComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
@@ -71,11 +68,10 @@ ModuleRegistry.registerModules(AllCommunityModules);
     EnvironmentService,
     AuthGuard,
     MenuService,
+    SidenavService,
     SpinnerService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-// ng g c base --inline-template=true --skipTests

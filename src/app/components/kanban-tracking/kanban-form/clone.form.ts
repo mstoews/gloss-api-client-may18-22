@@ -1,7 +1,7 @@
-import { Component, Inject, Optional } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { PartyService } from "app/services/party.service";
+import { Component, Inject, Optional } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PartyService } from 'app/services/party.service';
 
 export interface IPartyRef {
   party_ref: string;
@@ -19,7 +19,7 @@ export interface IPartyRef {
 }
 
 @Component({
-  selector: "kanban-clone",
+  selector: 'kanban-clone',
   template: `
     <h1 mat-dialog-title>Clone Kanban</h1>
     <div mat-dialog-content>
@@ -68,7 +68,7 @@ export interface IPartyRef {
 })
 export class KanbanCloneComponent {
   formGroup: FormGroup;
-  clients: string[] = ["CORE"];
+  clients: string[] = ['CORE'];
   parties: IPartyRef[];
 
   constructor(
@@ -77,34 +77,34 @@ export class KanbanCloneComponent {
     public dialogRef: MatDialogRef<KanbanCloneComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    if (localStorage.getItem("CLIENT") !== "CORE") {
-      this.clients.push(localStorage.getItem("CLIENT"));
+    if (localStorage.getItem('CLIENT') !== 'CORE') {
+      this.clients.push(localStorage.getItem('CLIENT'));
     }
     this.createForm();
   }
 
   createForm() {
     this.formGroup = this.fb.group({
-      client_ref: "",
-      party_ref: "",
-      new_party_ref: "",
+      client_ref: '',
+      party_ref: '',
+      new_party_ref: '',
     });
   }
 
   onCreate() {
     const data = this.formGroup.getRawValue();
     const newPartyRef = data.new_party_ref as string;
-    if (newPartyRef !== "" && newPartyRef.length > 0) {
-      this.dialogRef.close({ event: "Create", data });
+    if (newPartyRef !== '' && newPartyRef.length > 0) {
+      this.dialogRef.close({ event: 'Create', data });
     }
   }
 
   closeDialog() {
-    this.dialogRef.close({ event: "Cancel" });
+    this.dialogRef.close({ event: 'Cancel' });
   }
 
   clientUpdated(event) {
-    const sComp = localStorage.getItem("CLIENT");
+    const sComp = localStorage.getItem('CLIENT');
     this.partyService
       .getPartyByTypeAndClient(sComp, event.value)
       .subscribe((value) => {

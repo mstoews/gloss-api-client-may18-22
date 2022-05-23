@@ -3,7 +3,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -12,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatTreeModule } from '@angular/material/tree';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
@@ -26,28 +25,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
-
-
-
-import {
-  DxButtonModule,
-  DxDataGridModule,
-  DxCheckBoxModule,
-  DxSelectBoxModule,
-  DxPivotGridModule,
-  DxToolbarModule,
-  DxPieChartModule,
-  DxChartModule,
-  DxFormModule,
-  DxSortableModule,
-  DxTreeViewModule,
-  DxGanttModule,
-  DxDateBoxModule,
-  DxTreeListModule
-
- } from 'devextreme-angular';
-
-
 
 const modules = [
   FormsModule,
@@ -63,23 +40,6 @@ const modules = [
   MatButtonModule,
   LayoutModule,
   MatTreeModule,
-  DxDataGridModule,
-  DxFormModule,
-  DxButtonModule,
-  DxSortableModule,
-  DxTreeViewModule,
-  DxTreeListModule,
-  DxCheckBoxModule,
-  DxSelectBoxModule,
-  DxPivotGridModule,
-  DxToolbarModule,
-  DxPieChartModule,
-  DxChartModule,
-  DxGanttModule,
-  DxCheckBoxModule,
-  DxSelectBoxModule,
-  DxDateBoxModule,
-  NgApexchartsModule,
   MatFormFieldModule,
   MatInputModule,
   MatToolbarModule,
@@ -103,16 +63,12 @@ const modules = [
   MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSidenavModule,
 ];
 
 @NgModule({
-  imports: [
-    ...modules,
-  ],
-  exports: [
-    ...modules,
-  ],
+  imports: [...modules],
+  exports: [...modules],
 })
-
-export class KanbanCommonModule { }
+export class KanbanCommonModule {}

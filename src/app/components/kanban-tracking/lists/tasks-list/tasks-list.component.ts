@@ -1,51 +1,10 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
 import { KanbanTaskFormComponent } from '../../kanban-form/kanban.task.form';
 import { Observable } from 'rxjs';
 import { KanbanService } from '../../module/kanban.service';
 import { KanbanRefService } from '../../module/kanban-party-ref.service';
-
-interface IType {
-  type: string;
-  description: string;
-  updatedte: Date;
-  updateusr: string;
-}
-
-interface IPriority {
-  priority: string;
-  description: string;
-  updatedte: Date;
-  updateusr: string;
-}
-
-export interface ITask {
-  assignee: string;
-  classname: string;
-  color: string;
-  dependencies: string;
-  description: string;
-  due_date: string;
-  estimate: string;
-  Id: string;
-  parentId: number;
-  party_ref: string;
-  priority: string;
-  rankid: number;
-  start_date: string;
-  status: string;
-  summary: string;
-  tags: string;
-  task_id: string;
-  title: string;
-  type: string;
-}
-
-export interface IBoard {
-  boardId: string;
-  boards?: ITask[];
-}
+import { ITask } from '../interface.types';
 
 export type Query = {
   KanbanTaskByRef: ITask[];
@@ -56,15 +15,11 @@ export type Query = {
   selector: 'tasks-list',
   // templateUrl: './tasks-list.component.html',
   template: `
-  <ng-container *ngIf="task | async as rows">
-    <grid
-      [cols]="cols"
-      [rows]="rows"
-      (notifyOpenDialog)="onNotify($event)"
-    >
-    </grid>
-  </ng-container>
-`,
+    <ng-container *ngIf="task | async as rows">
+      <grid [cols]="cols" [rows]="rows" (notifyOpenDialog)="onNotify($event)">
+      </grid>
+    </ng-container>
+  `,
 })
 export class TasksListComponent implements OnInit {
   allowDropInsideItem = true;

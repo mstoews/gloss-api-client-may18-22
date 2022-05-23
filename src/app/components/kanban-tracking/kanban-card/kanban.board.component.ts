@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/member-ordering */
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  OnInit,
+  ViewChild,
+  OnDestroy,
+} from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -13,10 +20,13 @@ import { ITask, IBoard } from '../module/tasks.model';
 import { MatDialog } from '@angular/material/dialog';
 import { KanbanTaskFormComponent } from '../kanban-form/kanban.task.form';
 import { PartyService } from 'app/services/party.service';
+import { Router } from '@angular/router';
 import { KanbanRefService } from '../module/kanban-party-ref.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { Observable } from '@apollo/client/core';
 
 @Component({
-  selector: 'app-kanban-card',
+  selector: 'app-kanban-board',
   templateUrl: './kanban.board.component.html',
   styleUrls: ['./kanban.board.component.scss'],
 })
@@ -25,17 +35,18 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public partyService: PartyService,
     public kanbanService: KanbanService,
-    public kanbanRefService: KanbanRefService
-  )
-   {
-     kanbanRefService.kanbanRefUpdated.subscribe((kanbanRef) => {
+    public kanbanRefService: KanbanRefService,
+    private router: Router
+  ) {
+    kanbanRefService.kanbanRefUpdated.subscribe((kanbanRef) => {
       this.partyRef = kanbanRef.getPartyRef();
       this.refreshData(this.partyRef);
       //  console.log ('Refreshing Kanban Board party Ref changed to: ', this.partyRef);
     });
   }
 
-  // notifyParentMenu
+  // notify
+  @Output() notifyUpdateTaskData: EventEmitter<ITask> = new EventEmitter();
 
   public outTitle = 'KANBAN';
   public partyRef: string;
@@ -60,19 +71,24 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
 
   // the following logic should be built out into multi dimentional array of broads and tasks
   allBoards: IBoard[];
+  public selectedTask: any;
+
+  @ViewChild('drawer') public sidenav: MatSidenav;
 
   ngOnInit(): void {
     //  console.log ('Refreshing KanbanBoard ... ngOnInit', this.partyRef);
-    if (this.partyRef === undefined) {
+    const partyRef = this.kanbanRefService.getPartyRef();
+    const clientRef = this.kanbanRefService.getClientRef();
+    if (partyRef === undefined) {
       this.onInitGetKanbanByType('COMP');
-    }
-    else {
-      this.refreshData(this.partyRef);
+    } else {
+      this.refreshData(partyRef);
     }
   }
 
-  onModifyTaskDialog(data) {
-    //  console.log ('Open Task Dialog', data);
+  onModifyTaskDialog(data: ITask) {
+    // this.kanbanService.setTask(data);
+    // this.sidenav.toggle();
     this.openDialog(data, 'Kanban Tasks');
   }
 
@@ -127,15 +143,14 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
   onInitGetKanbanByType(partyType: string) {
     this.partyService.getFirstPartyByType(partyType).subscribe((val) => {
       if (this.partyRef === undefined) {
-          this.partyRef = val.party_ref;
-          this.kanbanRefService.setPartyRef(val.party_ref);
+        this.partyRef = val.party_ref;
+        this.kanbanRefService.setPartyRef(val.party_ref);
       }
       this.refreshData(this.partyRef);
     });
   }
 
   public refreshData(partyRef: string) {
-    //  console.log (`Refreshing KanbanBoard:refreshData ${partyRef}`);
     this.subOpen = this.kanbanService
       .getKanbanTaskByRefAndStatus(partyRef, this.OPEN)
       .subscribe((task) => (this.openTasks = task));
@@ -189,7 +204,7 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
       previousData.forEach((task) => {
         task.rankid = i;
         this.kanbanService.KanbanUpdate(task.task_id, task).subscribe({
-          next: (value) => console.log (`Previous container data: ${value}`),
+          next: (value) => console.log(`Previous container data: ${value}`),
         });
         i++;
       });
@@ -212,7 +227,7 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
         task.status = newContainerId;
         task.rankid = i;
         this.kanbanService.KanbanUpdate(task.task_id, task).subscribe({
-          next: (value) => console.log (`New container data: ${value}`),
+          next: (value) => console.log(`New container data: ${value}`),
         });
         i++;
       });

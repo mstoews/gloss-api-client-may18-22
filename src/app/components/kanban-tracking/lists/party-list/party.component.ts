@@ -24,15 +24,11 @@ export type Query = {
   selector: 'party-list',
   // templateUrl: './party.component.html',
   template: `
-  <ng-container *ngIf="kanbanList | async as rows">
-    <grid
-      [cols]="cols"
-      [rows]="rows"
-      (notifyOpenDialog)="onNotify($event)"
-    >
-    </grid>
-  </ng-container>
-`,
+    <ng-container *ngIf="kanbanList | async as rows">
+      <grid [cols]="cols" [rows]="rows" (notifyOpenDialog)="onNotify($event)">
+      </grid>
+    </ng-container>
+  `,
 })
 export class PartyListComponent {
   kanbanList!: Observable<PartyType[]>;
@@ -54,10 +50,10 @@ export class PartyListComponent {
   }
 
   logEvent(e) {
-    //  console.log (e);
+    console.log(e);
   }
 
   onRowDblClick(e) {
-    //  console.log ('Double clicked', e.data);
+    console.log('Double clicked', e.data);
   }
 }

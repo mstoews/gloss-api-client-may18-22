@@ -19,7 +19,7 @@ import { KanbanBoardComponent } from '../kanban-card/kanban.board.component';
 import { PartyService } from 'app/services/party.service';
 import { KanbanRefService } from '../module/kanban-party-ref.service';
 import { TasksListComponent } from '../lists/tasks-list/tasks-list.component';
-import { TreeComponent } from '../lists/dx-tree/dx-tree.component';
+// import { TreeComponent } from '../lists/dx-tree/dx-tree.component';
 
 @Component({
   selector: 'app-kanban-group',
@@ -56,14 +56,12 @@ export class KanbanGroupComponent implements AfterViewInit {
   @ViewChild(KanbanBoardComponent)
   public kanbanBoardComponent: KanbanBoardComponent;
   @ViewChild(TasksListComponent) public tasksListComponent: TasksListComponent;
-  @ViewChild(TreeComponent) public treeComponent: TreeComponent;
-
+  // @ViewChild(TreeComponent) public treeComponent: TreeComponent;
 
   tabSelection = {
     Boards: () => this.onBoard(),
     Kanban: () => this.onKanban(),
   };
-
 
   onTabChanged() {
     const tabLabel = this.tabGroup._tabs.toArray();
@@ -94,7 +92,8 @@ export class KanbanGroupComponent implements AfterViewInit {
   }
 
   onTabClick() {
-    const tabLabel = this.tabGroup._tabs.toArray()[this.tabGroup.selectedIndex].textLabel;
+    const tabLabel =
+      this.tabGroup._tabs.toArray()[this.tabGroup.selectedIndex].textLabel;
     {
       switch (tabLabel) {
         case 'Boards': {
@@ -112,8 +111,8 @@ export class KanbanGroupComponent implements AfterViewInit {
           break;
         }
         case 'Dependency': {
-          this.treeComponent.partyRef = this.partyRef;
-          this.treeComponent.refreshData();
+          // this.treeComponent.partyRef = this.partyRef;
+          // this.treeComponent.refreshData();
           //  console.log (`Refreshing tabs selected ${this.partyRef} for tab ${tabLabel} `);
           break;
         }

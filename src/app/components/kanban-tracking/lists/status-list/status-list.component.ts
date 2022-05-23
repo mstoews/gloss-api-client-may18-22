@@ -6,7 +6,7 @@ export type Query = {
   statusType: StatusType[];
 };
 
-export interface StatusType  {
+export interface StatusType {
   status: string;
   description: string;
   updatedte: string;
@@ -17,23 +17,22 @@ export interface StatusType  {
   selector: 'status-list',
   // templateUrl: './status-list.component.html',
   template: `
-  <ng-container *ngIf="status | async as rows">
-    <grid
-      [cols]="cols"
-      [rows]="rows"
-      (notifyOpenDialog)="onNotify($event)"
-    >
-    </grid>
-  </ng-container>
-`,
+    <ng-container *ngIf="status | async as partyGql">
+      <grid
+        [cols]="cols"
+        [rows]="partyGql"
+        (notifyFileUpload)="onFileUpload($event)"
+        (notifyOpenDialog)="onNotify($event)"
+      >
+      </grid>
+    </ng-container>
+  `,
 })
-export class StatusListComponent  {
-
+export class StatusListComponent {
   status!: Observable<StatusType[]>;
   cols: any;
 
-  constructor(private kanbanService: KanbanService)
-   {
+  constructor(private kanbanService: KanbanService) {
     this.status = this.kanbanService.getKanbanStatus();
     this.cols = this.kanbanService.getStatusCols();
   }

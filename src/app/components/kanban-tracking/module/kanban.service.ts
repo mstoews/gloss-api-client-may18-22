@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { map, takeLast } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as glossApi from 'app/services/api.service';
@@ -40,9 +40,19 @@ export class KanbanService {
   ) {}
 
   // tslint:disable-next-line:variable-name
-  public getPartyByRefAndClient(party_type: string, client_ref: string) {
+
+  public currentTask: ITask;
+
+  public taskUpdated = new EventEmitter<ITask>();
+
+  public setTask(task: ITask) {
+    this.currentTask = task;
+    this.taskUpdated.emit(this.currentTask);
+  }
+
+  public getPartyByRefAndClient(partyType: string, clientRef: string) {
     return this.partyByTypeGQL
-      .watch({ party_type, client_ref })
+      .watch({ party_type: partyType, client_ref: clientRef })
       .valueChanges.pipe(map((result) => result.data.partyByType));
   }
 
@@ -209,6 +219,22 @@ export class KanbanService {
       { headerName: 'Assignee', field: 'assignee' },
       { headerName: 'Start Date', field: 'start_date' },
       { headerName: 'Due Date', field: 'due_date' },
+      {
+        headerName: 'RAG',
+        field: 'color',
+        cellStyle: (params) => {
+          if (params.value === '#238823') {
+            return { color: params.value, backgroundColor: params.value };
+          } else if (params.value === '#FFBF00') {
+            return {
+              color: params.value,
+              backgroundColor: params.value,
+            };
+          } else if (params.value === '#D2222D') {
+            return { color: params.value, backgroundColor: params.value };
+          }
+        },
+      },
     ];
     return cols;
   }

@@ -99,3 +99,7 @@ $Broadridge_Blue: #00578e;
 .list.cdk-drop-list-dragging .box:not(.cdk-drag-placeholder) {
   transition: transform 500ms cubic-bezier(1, 1, 0.2, 1);
 }
+
+.side-drawer {
+  width: 600px;
+}
