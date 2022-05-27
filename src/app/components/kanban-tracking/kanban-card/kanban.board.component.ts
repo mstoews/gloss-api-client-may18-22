@@ -23,7 +23,7 @@ import { PartyService } from 'app/services/party.service';
 import { Router } from '@angular/router';
 import { KanbanRefService } from '../module/kanban-party-ref.service';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Observable } from '@apollo/client/core';
+import { IMenuState } from '../module/tasks.model';
 
 @Component({
   selector: 'app-kanban-board',
@@ -37,13 +37,7 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
     public kanbanService: KanbanService,
     public kanbanRefService: KanbanRefService,
     private router: Router
-  ) {
-    kanbanRefService.kanbanRefUpdated.subscribe((kanbanRef) => {
-      this.partyRef = kanbanRef.getPartyRef();
-      this.refreshData(this.partyRef);
-      //  console.log ('Refreshing Kanban Board party Ref changed to: ', this.partyRef);
-    });
-  }
+  ) {}
 
   // notify
   @Output() notifyUpdateTaskData: EventEmitter<ITask> = new EventEmitter();
@@ -62,12 +56,14 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
   subProgress: Subscription;
   subReview: Subscription;
   subComplete: Subscription;
-  bourds: Subscription[];
 
   openTasks: ITask[];
   progressTasks: ITask[];
   reviewTasks: ITask[];
   completeTasks: ITask[];
+  clientRef: string;
+
+  private igMenuChanged: Subscription;
 
   // the following logic should be built out into multi dimentional array of broads and tasks
   allBoards: IBoard[];
@@ -77,12 +73,17 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //  console.log ('Refreshing KanbanBoard ... ngOnInit', this.partyRef);
-    const partyRef = this.kanbanRefService.getPartyRef();
-    const clientRef = this.kanbanRefService.getClientRef();
-    if (partyRef === undefined) {
+    this.igMenuChanged = this.kanbanRefService.kanbanRefUpdated.subscribe(
+      (menuState: IMenuState) => {
+        this.partyRef = menuState.partyRef;
+        this.clientRef = menuState.clientRef;
+        this.refreshData(this.partyRef);
+      }
+    );
+    if (this.partyRef === undefined) {
       this.onInitGetKanbanByType('COMP');
     } else {
-      this.refreshData(partyRef);
+      this.refreshData(this.partyRef);
     }
   }
 
@@ -123,10 +124,18 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
     this.kanbanService
       .KanbanUpdate(data.task_id, data)
       .subscribe((value) => this.refreshData(data.party_ref));
+    this.refreshDataW();
   }
 
   delete(data) {
-    this.kanbanService.kanbanDelete(data.task_id);
+    this.kanbanService.kanbanDelete(data.task_id).subscribe(
+      (value) => {
+        this.refreshData(data.party_ref);
+      },
+      (error) => {
+        console.log(error.message);
+      }
+    );
   }
 
   public refreshDataW() {

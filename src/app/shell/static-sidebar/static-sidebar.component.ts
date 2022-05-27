@@ -34,7 +34,7 @@ import { MatDrawer } from '@angular/material/sidenav';
           transform: 'translateX(100px)',
         })
       ),
-      transition('normal <=> highlighted', animate(350)),
+      transition('normal <=> highlighted', animate(180)),
     ]),
   ],
 })
@@ -48,12 +48,14 @@ export class StaticSidebarComponent implements OnInit {
       displayName: 'HOME',
       iconName: 'heroicons_outline:home',
       route: '/introduction',
+      parent: false,
       children: [],
     },
     {
       displayName: 'GLOSS',
       iconName: 'mat_outline:payment',
       route: '/comp',
+      parent: true,
       children: [
         {
           displayName: 'COMPANY',
@@ -113,6 +115,7 @@ export class StaticSidebarComponent implements OnInit {
       displayName: 'JASDEC PS',
       iconName: 'heroicons_outline:view-boards',
       route: 'jasdec',
+      parent: true,
       children: [
         {
           displayName: 'COMPANY',
@@ -145,6 +148,7 @@ export class StaticSidebarComponent implements OnInit {
       displayName: 'BOJ PS',
       iconName: 'heroicons_outline:library',
       route: 'bojps',
+      parent: true,
       children: [
         {
           displayName: 'COMPANY',
@@ -177,6 +181,7 @@ export class StaticSidebarComponent implements OnInit {
       displayName: 'TE',
       iconName: 'heroicons_outline:adjustments',
       route: '/static/tetemplate',
+      parent: true,
       children: [],
     },
   ];

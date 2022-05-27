@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { PartyService } from 'app/services/party.service';
@@ -24,13 +24,13 @@ import { PartySsiComponent } from './party-ssi.component';
 import { PartyTemplateComponent } from './party-template.component';
 import { PartyTypeComponent } from './party.type.component';
 
-
 @Component({
   selector: 'app-party-group',
   templateUrl: './party-group.component.html',
   providers: [PartyService],
 })
 export class PartyGroupComponent implements OnInit {
+  constructor(public partyService: PartyService) {}
   @ViewChild(PartyTypeComponent) public partyTypeComponent: PartyTypeComponent;
   @ViewChild(PartyExtRefComponent)
   public partyrefComponent: PartyExtRefComponent;
@@ -63,24 +63,38 @@ export class PartyGroupComponent implements OnInit {
   @Input() public party_type: string;
   @Input() public component_type: string;
 
+  currentTab = 0;
+
   public showreferencecomponent(): boolean {
-    if (this.component_type === 'PARTYDATA') return true;
-    else return false;
+    if (this.component_type === 'PARTYDATA') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public showclassificationscomponent(): boolean {
-    if (this.component_type === 'PARTYDATA') return true;
-    else return false;
+    if (this.component_type === 'PARTYDATA') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public showflagcomponent(): boolean {
-    if (this.component_type === 'PARTYDATA') return true;
-    else return false;
+    if (this.component_type === 'PARTYDATA') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public shownarrativecomponent(): boolean {
-    if (this.component_type === 'PARTYDATA') return true;
-    else return false;
+    if (this.component_type === 'PARTYDATA') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public showassociationcomponent(): boolean {
@@ -93,7 +107,9 @@ export class PartyGroupComponent implements OnInit {
       this.component_type === 'PARTYDATA'
     )
       return true;
-    else return false;
+    else {
+      return false;
+    }
   }
 
   public showinstrumentscomponent(): boolean {
@@ -102,58 +118,73 @@ export class PartyGroupComponent implements OnInit {
         this.party_type === 'SECP' ||
         this.party_type === 'DEPO') &&
       this.component_type === 'PARTYDATA'
-    )
+    ) {
       return true;
-    else return false;
+    } else {
+      return false;
+    }
   }
 
   public showssicomponent(): boolean {
     if (
       (this.party_type === 'COMP' || this.party_type === 'SECP') &&
       this.component_type === 'PARTYDATA'
-    )
+    ) {
       return true;
-    else return false;
+    } else {
+      return false;
+    }
   }
 
   public showdatecomponent(): boolean {
-    if (this.party_type === 'COMP' && this.component_type === 'PARTYDATA')
+    if (this.party_type === 'COMP' && this.component_type === 'PARTYDATA') {
       return true;
-    else return false;
+    } else {
+      return false;
+    }
   }
 
   public showaddresscomponent(): boolean {
-    if (this.party_type === 'COMP' && this.component_type === 'PARTYDATA')
+    if (this.party_type === 'COMP' && this.component_type === 'PARTYDATA') {
       return true;
-    else return false;
+    } else {
+      return false;
+    }
   }
 
   public showtemplatecomponent(): boolean {
-    if (this.party_type === 'COMP' && this.component_type === 'PARTYDATA')
+    if (this.party_type === 'COMP' && this.component_type === 'PARTYDATA') {
       return true;
-    else return false;
+    } else {
+      return false;
+    }
   }
 
   public showclassassoccomponent(): boolean {
-    if (this.component_type === 'CLASSASSOC') return true;
-    else return false;
+    if (this.component_type === 'CLASSASSOC') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public shownettingcomponent(): boolean {
-    if (this.component_type === 'NETTING') return true;
-    else return false;
+    if (this.component_type === 'NETTING') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public showswiftcomponent(): boolean {
-    if (this.component_type === 'SWIFT') return true;
-    else return false;
+    if (this.component_type === 'SWIFT') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  currentTab = 0;
-
-  constructor(public partyService: PartyService) { }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {

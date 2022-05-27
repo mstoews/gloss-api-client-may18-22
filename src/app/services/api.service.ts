@@ -2,7 +2,10 @@ import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -13,8 +16,6 @@ export type Scalars = {
   /** Date custom scalar type */
   Date: any;
 };
-
-
 
 export type BojEnvironment = {
   __typename?: 'BojEnvironment';
@@ -115,7 +116,6 @@ export type DatabasesInput = {
   version_user: Scalars['String'];
 };
 
-
 export type DpmAccount = {
   __typename?: 'DpmAccount';
   account_no: Scalars['String'];
@@ -152,7 +152,7 @@ export type DpmAccountExtRefInput = {
   client_ref: Scalars['String'];
   company_ref: Scalars['String'];
   component_type: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ref: Scalars['String'];
   version_date: Scalars['Date'];
   version_no: Scalars['Int'];
@@ -181,7 +181,7 @@ export type DpmAccountFlagInput = {
   client_ref: Scalars['String'];
   company_ref: Scalars['String'];
   component_type: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ref: Scalars['String'];
   version_date: Scalars['Date'];
   version_no: Scalars['Int'];
@@ -221,7 +221,7 @@ export type DpmConfigDefInput = {
   component_type: Scalars['String'];
   config_type: Scalars['String'];
   config_value: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ref: Scalars['String'];
   version_date: Scalars['Date'];
   version_no: Scalars['Int'];
@@ -307,7 +307,7 @@ export type DpmPartyExtRefInput = {
   client_ref: Scalars['String'];
   company_ref: Scalars['String'];
   component_type: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ext_ref: Scalars['String'];
   party_ext_ref_type: Scalars['String'];
   party_ref: Scalars['String'];
@@ -334,7 +334,7 @@ export type DpmPartyFlagInput = {
   client_ref: Scalars['String'];
   company_ref: Scalars['String'];
   component_type: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_flag: Scalars['String'];
   party_flag_type: Scalars['Int'];
   party_ref: Scalars['String'];
@@ -374,14 +374,14 @@ export type DpmScheduler = {
 };
 
 export type DpmSchedulerInput = {
-  active_ind_p2k?: Maybe<Scalars['String']>;
+  active_ind_p2k?: InputMaybe<Scalars['String']>;
   batch_size: Scalars['Int'];
   bus_day: Scalars['String'];
   client_ref: Scalars['String'];
   component_type: Scalars['String'];
   database_code: Scalars['String'];
   database_type: Scalars['String'];
-  due_date_time?: Maybe<Scalars['Date']>;
+  due_date_time?: InputMaybe<Scalars['Date']>;
   end_by_interval: Scalars['Int'];
   end_by_time: Scalars['Date'];
   event_ref: Scalars['String'];
@@ -461,14 +461,14 @@ export type GlossScheduler = {
 };
 
 export type GlossSchedulerInput = {
-  active_ind_p2k?: Maybe<Scalars['String']>;
+  active_ind_p2k?: InputMaybe<Scalars['String']>;
   batch_size: Scalars['Int'];
   bus_day: Scalars['String'];
   client_ref: Scalars['String'];
   database_code: Scalars['String'];
   database_type: Scalars['String'];
-  dst_region_code?: Maybe<Scalars['String']>;
-  due_date_time?: Maybe<Scalars['Date']>;
+  dst_region_code?: InputMaybe<Scalars['String']>;
+  due_date_time?: InputMaybe<Scalars['Date']>;
   end_by_interval: Scalars['Int'];
   end_by_time: Scalars['Date'];
   event_ref: Scalars['String'];
@@ -525,18 +525,18 @@ export type JsdcFileDefInput = {
   client_ref: Scalars['String'];
   component_type: Scalars['String'];
   data_rec_type_len: Scalars['Int'];
-  db_code?: Maybe<Scalars['String']>;
+  db_code?: InputMaybe<Scalars['String']>;
   file_desc: Scalars['String'];
   file_diff: Scalars['String'];
   file_name: Scalars['String'];
   file_proc_type: Scalars['String'];
   multi_basis_date: Scalars['String'];
   proc_status_check: Scalars['String'];
-  proc_status_pos?: Maybe<Scalars['Int']>;
-  proc_status_value?: Maybe<Scalars['String']>;
+  proc_status_pos?: InputMaybe<Scalars['Int']>;
+  proc_status_value?: InputMaybe<Scalars['String']>;
   product_group: Scalars['String'];
   rec_len: Scalars['Int'];
-  required_file_name?: Maybe<Scalars['String']>;
+  required_file_name?: InputMaybe<Scalars['String']>;
   transfer_type: Scalars['String'];
   version_date: Scalars['Date'];
   version_no: Scalars['Int'];
@@ -544,25 +544,25 @@ export type JsdcFileDefInput = {
 };
 
 export type KanbanInputs = {
-  assignee?: Maybe<Scalars['String']>;
-  classname?: Maybe<Scalars['String']>;
-  color?: Maybe<Scalars['String']>;
-  dependencies?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  due_date?: Maybe<Scalars['Date']>;
-  estimate?: Maybe<Scalars['Int']>;
-  Id?: Maybe<Scalars['Int']>;
-  parentId?: Maybe<Scalars['Int']>;
-  party_ref?: Maybe<Scalars['String']>;
-  priority?: Maybe<Scalars['String']>;
-  rankid?: Maybe<Scalars['Int']>;
-  start_date?: Maybe<Scalars['Date']>;
-  status?: Maybe<Scalars['String']>;
-  summary?: Maybe<Scalars['String']>;
-  tags?: Maybe<Scalars['String']>;
+  assignee?: InputMaybe<Scalars['String']>;
+  classname?: InputMaybe<Scalars['String']>;
+  color?: InputMaybe<Scalars['String']>;
+  dependencies?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  due_date?: InputMaybe<Scalars['Date']>;
+  estimate?: InputMaybe<Scalars['Int']>;
+  Id?: InputMaybe<Scalars['Int']>;
+  parentId?: InputMaybe<Scalars['Int']>;
+  party_ref?: InputMaybe<Scalars['String']>;
+  priority?: InputMaybe<Scalars['String']>;
+  rankid?: InputMaybe<Scalars['Int']>;
+  start_date?: InputMaybe<Scalars['Date']>;
+  status?: InputMaybe<Scalars['String']>;
+  summary?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Scalars['String']>;
   task_id: Scalars['String'];
-  title?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type LoginInput = {
@@ -1632,7 +1632,7 @@ export type PartyAssocInput = {
   assoc_party_ref: Scalars['String'];
   assoc_type: Scalars['String'];
   client_ref: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ref: Scalars['String'];
   version_date: Scalars['Date'];
   version_no: Scalars['Int'];
@@ -1672,7 +1672,7 @@ export type PartyClassInput = {
   class_code: Scalars['String'];
   class_type: Scalars['String'];
   client_ref: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ref: Scalars['String'];
   version_date: Scalars['Date'];
   version_no: Scalars['Int'];
@@ -1735,7 +1735,7 @@ export type PartyExtRef = {
 
 export type PartyExtRefInput = {
   client_ref: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ext_ref: Scalars['String'];
   party_ext_ref_type: Scalars['String'];
   party_ref: Scalars['String'];
@@ -1758,7 +1758,7 @@ export type PartyFlag = {
 
 export type PartyFlagInput = {
   client_ref: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   flag_code: Scalars['String'];
   flag_type: Scalars['Int'];
   party_ref: Scalars['String'];
@@ -1804,7 +1804,7 @@ export type PartyInstr = {
 
 export type PartyInstrInput = {
   client_ref: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   instr_ref: Scalars['String'];
   instr_ref_type: Scalars['String'];
   instr_type: Scalars['String'];
@@ -1816,7 +1816,7 @@ export type PartyInstrInput = {
 
 export type PartyInstrumentModels = {
   __typename?: 'PartyInstrumentModels';
-  desc?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   key: Scalars['String'];
   user_defined?: Maybe<Scalars['String']>;
 };
@@ -1835,7 +1835,7 @@ export type PartyNarrative = {
 
 export type PartyNarrativeInput = {
   client_ref: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   narr_type: Scalars['String'];
   narrative: Scalars['String'];
   party_ref: Scalars['String'];
@@ -1846,7 +1846,7 @@ export type PartyNarrativeInput = {
 
 export type PartyNarrativeModels = {
   __typename?: 'PartyNarrativeModels';
-  desc?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   key: Scalars['String'];
   user_defined?: Maybe<Scalars['String']>;
 };
@@ -1890,7 +1890,7 @@ export type PartySsiInput = {
   depot_alias: Scalars['String'];
   depot_descr: Scalars['String'];
   depot_type: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
   party_ref: Scalars['String'];
   version_date: Scalars['Date'];
   version_no: Scalars['Int'];
@@ -2362,13 +2362,13 @@ export type QuerySubTasksByTaskIdArgs = {
 };
 
 export type SubTaskInputs = {
-  desc?: Maybe<Scalars['String']>;
-  estimate?: Maybe<Scalars['Int']>;
-  status?: Maybe<Scalars['String']>;
+  desc?: InputMaybe<Scalars['String']>;
+  estimate?: InputMaybe<Scalars['Int']>;
+  status?: InputMaybe<Scalars['String']>;
   subid: Scalars['String'];
-  summary?: Maybe<Scalars['String']>;
+  summary?: InputMaybe<Scalars['String']>;
   task_id: Scalars['String'];
-  type?: Maybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type SubTasks = {
@@ -2419,7 +2419,6 @@ export type TeamInputs = {
   first_name: Scalars['String'];
   last_name: Scalars['String'];
   location: Scalars['String'];
-  party_ref: Scalars['String'];
   team_member: Scalars['String'];
   title: Scalars['String'];
   updatedte: Scalars['Date'];
@@ -2431,7 +2430,6 @@ export type TeamModel = {
   first_name: Scalars['String'];
   last_name: Scalars['String'];
   location: Scalars['String'];
-  party_ref: Scalars['String'];
   team_member: Scalars['String'];
   title: Scalars['String'];
   updatedte: Scalars['Date'];
@@ -2454,8 +2452,8 @@ export type UserInput = {
   client_ref: Scalars['String'];
   createdAt: Scalars['Date'];
   email: Scalars['String'];
-  firstname?: Maybe<Scalars['String']>;
-  lastname?: Maybe<Scalars['String']>;
+  firstname?: InputMaybe<Scalars['String']>;
+  lastname?: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
   role: Scalars['String'];
   updatedAt: Scalars['Date'];
@@ -2717,6 +2715,104 @@ export type UpdateTaskParentIdMutation = (
   & { updateTaskParentId: (
     { __typename?: 'kb_task' }
     & Pick<Kb_Task, 'task_id' | 'parentId'>
+  ) }
+);
+
+export type GetPartyAssociationTypeByKeyQueryVariables = Exact<{
+  key: Scalars['String'];
+}>;
+
+
+export type GetPartyAssociationTypeByKeyQuery = (
+  { __typename?: 'Query' }
+  & { getPartyAssociationTypeByKey: Array<(
+    { __typename?: 'PartyAssocModels' }
+    & Pick<PartyAssocModels, 'description' | 'user_defined'>
+  )> }
+);
+
+export type GetAllPartyAssociationTypesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllPartyAssociationTypesQuery = (
+  { __typename?: 'Query' }
+  & { getAllPartyAssociationsTypes: Array<(
+    { __typename?: 'PartyAssocModels' }
+    & Pick<PartyAssocModels, 'description' | 'user_defined'>
+  )> }
+);
+
+export type GetPartyFlagTypeByKeyQueryVariables = Exact<{
+  flag: Scalars['String'];
+}>;
+
+
+export type GetPartyFlagTypeByKeyQuery = (
+  { __typename?: 'Query' }
+  & { getPartyFlagTypeByKey: Array<(
+    { __typename?: 'PartyFlagModels' }
+    & Pick<PartyFlagModels, 'description' | 'user_defined'>
+  )> }
+);
+
+export type AddPartyFromXmlMutationVariables = Exact<{
+  xml: Scalars['String'];
+}>;
+
+
+export type AddPartyFromXmlMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'addPartyfromXML'>
+);
+
+export type KanbanAssigneeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type KanbanAssigneeQuery = (
+  { __typename?: 'Query' }
+  & { KanbanAssignee: Array<(
+    { __typename?: 'TeamModel' }
+    & Pick<TeamModel, 'team_member' | 'last_name' | 'first_name' | 'location' | 'title'>
+  )> }
+);
+
+export type CreateKanbanAssigneeMutationVariables = Exact<{
+  data: TeamInputs;
+}>;
+
+
+export type CreateKanbanAssigneeMutation = (
+  { __typename?: 'Mutation' }
+  & { createKanbanAssignee: (
+    { __typename?: 'TeamModel' }
+    & Pick<TeamModel, 'first_name'>
+  ) }
+);
+
+export type GetKanbanMemberByIdQueryVariables = Exact<{
+  team_member: Scalars['String'];
+}>;
+
+
+export type GetKanbanMemberByIdQuery = (
+  { __typename?: 'Query' }
+  & { KanbanAssigneeById: Array<(
+    { __typename?: 'TeamModel' }
+    & Pick<TeamModel, 'team_member' | 'last_name' | 'first_name' | 'location' | 'title'>
+  )> }
+);
+
+export type UpdateKanbanMemberMutationVariables = Exact<{
+  data: TeamInputs;
+  team_member: Scalars['String'];
+}>;
+
+
+export type UpdateKanbanMemberMutation = (
+  { __typename?: 'Mutation' }
+  & { updateKanbanAssignee: (
+    { __typename?: 'TeamModel' }
+    & Pick<TeamModel, 'team_member' | 'last_name' | 'first_name' | 'location' | 'title'>
   ) }
 );
 
@@ -4724,16 +4820,6 @@ export type DeleteTeTemplateMutation = (
   ) }
 );
 
-export type AddPartyFromXmlMutationVariables = Exact<{
-  xml: Scalars['String'];
-}>;
-
-
-export type AddPartyFromXmlMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'addPartyfromXML'>
-);
-
 export const KanbanTaskFragmentDoc = gql`
     fragment KanbanTask on kb_task {
   party_ref
@@ -5034,6 +5120,163 @@ export const UpdateTaskParentIdDocument = gql`
   })
   export class UpdateTaskParentIdGQL extends Apollo.Mutation<UpdateTaskParentIdMutation, UpdateTaskParentIdMutationVariables> {
     document = UpdateTaskParentIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetPartyAssociationTypeByKeyDocument = gql`
+    query getPartyAssociationTypeByKey($key: String!) {
+  getPartyAssociationTypeByKey(key: $key) {
+    description
+    user_defined
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetPartyAssociationTypeByKeyGQL extends Apollo.Query<GetPartyAssociationTypeByKeyQuery, GetPartyAssociationTypeByKeyQueryVariables> {
+    document = GetPartyAssociationTypeByKeyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetAllPartyAssociationTypesDocument = gql`
+    query getAllPartyAssociationTypes {
+  getAllPartyAssociationsTypes {
+    description
+    user_defined
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllPartyAssociationTypesGQL extends Apollo.Query<GetAllPartyAssociationTypesQuery, GetAllPartyAssociationTypesQueryVariables> {
+    document = GetAllPartyAssociationTypesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetPartyFlagTypeByKeyDocument = gql`
+    query getPartyFlagTypeByKey($flag: String!) {
+  getPartyFlagTypeByKey(key: $flag) {
+    description
+    user_defined
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetPartyFlagTypeByKeyGQL extends Apollo.Query<GetPartyFlagTypeByKeyQuery, GetPartyFlagTypeByKeyQueryVariables> {
+    document = GetPartyFlagTypeByKeyDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const AddPartyFromXmlDocument = gql`
+    mutation addPartyFromXML($xml: String!) {
+  addPartyfromXML(xml: $xml)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class AddPartyFromXmlGQL extends Apollo.Mutation<AddPartyFromXmlMutation, AddPartyFromXmlMutationVariables> {
+    document = AddPartyFromXmlDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const KanbanAssigneeDocument = gql`
+    query KanbanAssignee {
+  KanbanAssignee {
+    team_member
+    last_name
+    first_name
+    location
+    title
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class KanbanAssigneeGQL extends Apollo.Query<KanbanAssigneeQuery, KanbanAssigneeQueryVariables> {
+    document = KanbanAssigneeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateKanbanAssigneeDocument = gql`
+    mutation createKanbanAssignee($data: TeamInputs!) {
+  createKanbanAssignee(data: $data) {
+    first_name
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateKanbanAssigneeGQL extends Apollo.Mutation<CreateKanbanAssigneeMutation, CreateKanbanAssigneeMutationVariables> {
+    document = CreateKanbanAssigneeDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetKanbanMemberByIdDocument = gql`
+    query getKanbanMemberById($team_member: String!) {
+  KanbanAssigneeById(team_member: $team_member) {
+    team_member
+    last_name
+    first_name
+    location
+    title
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetKanbanMemberByIdGQL extends Apollo.Query<GetKanbanMemberByIdQuery, GetKanbanMemberByIdQueryVariables> {
+    document = GetKanbanMemberByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateKanbanMemberDocument = gql`
+    mutation updateKanbanMember($data: TeamInputs!, $team_member: String!) {
+  updateKanbanAssignee(team_member: $team_member, data: $data) {
+    team_member
+    last_name
+    first_name
+    location
+    title
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateKanbanMemberGQL extends Apollo.Mutation<UpdateKanbanMemberMutation, UpdateKanbanMemberMutationVariables> {
+    document = UpdateKanbanMemberDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -8472,22 +8715,6 @@ export const DeleteTeTemplateDocument = gql`
   })
   export class DeleteTeTemplateGQL extends Apollo.Mutation<DeleteTeTemplateMutation, DeleteTeTemplateMutationVariables> {
     document = DeleteTeTemplateDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const AddPartyFromXmlDocument = gql`
-    mutation addPartyFromXML($xml: String!) {
-  addPartyfromXML(xml: $xml)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class AddPartyFromXmlGQL extends Apollo.Mutation<AddPartyFromXmlMutation, AddPartyFromXmlMutationVariables> {
-    document = AddPartyFromXmlDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

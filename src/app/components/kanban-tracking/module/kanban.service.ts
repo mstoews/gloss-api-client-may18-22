@@ -4,6 +4,7 @@ import { map, takeLast } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as glossApi from 'app/services/api.service';
 import { ITask } from './tasks.model';
+import { KanbanAssigneeGQL } from '../../../services/api.service';
 
 export type TaskArray = {
   tasks: ITask[];
@@ -36,7 +37,8 @@ export class KanbanService {
     private readonly firstKanbanTask: glossApi.KanbanFirstTaskGQL,
     private readonly kanbanTaskByTaskId: glossApi.KanbanTaskByTaskIdGQL,
     private readonly updateTaskParentId: glossApi.UpdateTaskParentIdGQL,
-    private readonly partyByTypeGQL: glossApi.PartyByTypeGQL
+    private readonly partyByTypeGQL: glossApi.PartyByTypeGQL,
+    private readonly kanbanAssigneeGQL: KanbanAssigneeGQL
   ) {}
 
   // tslint:disable-next-line:variable-name
@@ -54,6 +56,13 @@ export class KanbanService {
     return this.partyByTypeGQL
       .watch({ party_type: partyType, client_ref: clientRef })
       .valueChanges.pipe(map((result) => result.data.partyByType));
+  }
+
+  /// Assignee
+  public getKanbanTeam() {
+    return this.kanbanAssigneeGQL
+      .watch()
+      .valueChanges.pipe(map((result) => result.data.KanbanAssignee));
   }
 
   public getFirstKanbanTaskRef() {
@@ -130,9 +139,9 @@ export class KanbanService {
     });
   }
 
-  public kanbanDelete(task: glossApi.KanbanInputs): any {
+  public kanbanDelete(task: string): any {
     return this.kanbanDeleteTask.mutate({
-      task_id: task.task_id,
+      task_id: task,
     });
   }
 
@@ -155,6 +164,17 @@ export class KanbanService {
         filter: 'agDateColumnFilter',
         valueFormatter: this.dateFormatter,
       },
+    ];
+    return cols;
+  }
+
+  public getTeamCols() {
+    const cols = [
+      { headerName: 'Member Name', field: 'team_member' },
+      { headerName: 'First Name', field: 'first_name' },
+      { headerName: 'Description', field: 'last_name' },
+      { headerName: 'Location', field: 'location' },
+      { headerName: 'Title', field: 'title' },
     ];
     return cols;
   }

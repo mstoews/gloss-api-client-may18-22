@@ -39,9 +39,8 @@ export class TasksListComponent implements OnInit {
     public kanbanRefService: KanbanRefService
   ) {
     kanbanRefService.kanbanRefUpdated.subscribe((kanban) => {
-      this.partyRef = kanban.getPartyRef();
+      this.partyRef = kanban.partyRef;
       this.refreshDataByRef(this.partyRef);
-      //  console.log ('Refreshing TaskListComponent', this.partyRef);
     });
   }
 
@@ -104,7 +103,7 @@ export class TasksListComponent implements OnInit {
   update(data) {
     this.kanbanService.KanbanUpdate(data.task_id, data).subscribe(
       (value) => {
-        // this.kanbanService.partySnackMessage( 'The party reference was updated: ', value.data.updatePartyByRef.party_ref),
+        // this.kanbanService.partySnackMessage( 'The party reference was updated: ', value.data..party_ref),
         this.refreshData();
       },
       (error) => {

@@ -1,7 +1,10 @@
 <li class="side-nav__item">
-  <a mat-list-item [ngStyle]="{'padding-left': (depth * 40) + 'px'}" (click)="onItemSelected(item)"
+  <a mat-list-item [ngStyle]="{'padding-left': (depth * 20) + 'px'}" (click)="onItemSelected(item)"
     [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
-    <mat-icon class="side-nav__icon" [svgIcon]=item.iconName > </mat-icon>
+    <!-- <div *ngIf="item.parent">
+      <mat-icon [svgIcon]="'heroicons_outline:chevron-right'"> </mat-icon>
+    </div> -->
+    <mat-icon class="side-nav__icon" [svgIcon]=item.iconName> </mat-icon>
     <span>{{item.displayName}}</span>
   </a>
 </li>

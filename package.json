@@ -16,7 +16,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gql": "graphql-codegen",
+    "gql": "graphql-codegen --config ./codegen.yml",
     "compodoc": "npx compodoc -p tsconfig.app.json -s --theme material",
     "\"generate\": \"graphql-codegen\"": "graphql-codegen --config codegen.yml",
     "  \"generate\": \"graphql-codegen\"": "graphql-codegen --config codegen.yml",

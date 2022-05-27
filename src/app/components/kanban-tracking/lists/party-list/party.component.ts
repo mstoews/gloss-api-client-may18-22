@@ -43,8 +43,8 @@ export class PartyListComponent {
     const client = localStorage.getItem('CLIENT');
     this.kanbanList = this.kanbanService.getPartyByRefAndClient('COMP', client);
     kanbanRefService.kanbanRefUpdated.subscribe((ref) => {
-      this.partyRef = ref.getPartyRef();
-      this.clientRef = ref.getClientRef();
+      this.partyRef = ref.partyRef;
+      this.clientRef = ref.clientRef;
     });
     this.cols = this.kanbanService.getPartyCols();
   }

@@ -28,9 +28,7 @@
             <mat-form-field [ngStyle]="{ width: '20%' }">
                 <mat-select placeholder="Priority" formControlName="priority"
                     (selectionChange)="changePriority($event.value)">
-                    <mat-option *ngFor="let p of priority" [value]="p.value">
-                        {{ p.viewValue }}
-                    </mat-option>
+                    <mat-option *ngFor="let p of priorities" [value]="p.value"> {{ p.viewValue }} </mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -44,7 +42,8 @@
             <mat-form-field [ngStyle]="{ width: '33%' }" class="form-element">
                 <mat-select placeholder="Assigned" formControlName="assignee"
                     (selectionChange)="changeType($event.value)">
-                    <mat-option *ngFor="let p of team" [value]="p.value"> {{ p.viewValue }} </mat-option>
+                    <mat-option *ngFor="let p of team" [value]="p.team_member"> {{ p.first_name + ' ' + p.last_name }}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
 

@@ -39,8 +39,7 @@ export class KanbanMenubarComponent implements OnInit {
     public kanbanRefService: KanbanRefService
   ) {
     this.kanbanRefService.kanbanRefUpdated.subscribe((party) => {
-      this.inPartyRef = party.getPartyRef();
-      this.inPartyRef = party.party_ref;
+      this.inPartyRef = party.partyRef;
     });
   }
 

@@ -35,10 +35,10 @@ export class KanbanGroupComponent implements AfterViewInit {
     kanbanRefService: KanbanRefService
   ) {
     const client = localStorage.getItem('CLIENT');
+
     kanbanRefService.kanbanRefUpdated.subscribe((ref) => {
-      this.partyRef = ref.getPartyRef();
-      this.clientRef = ref.getClientRef();
-      this.currectSelection = ref.getCurrentTabSelection();
+      this.partyRef = ref.partyRef;
+      this.clientRef = ref.clientRef;
     });
   }
 

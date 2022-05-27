@@ -25,6 +25,8 @@ import { PriorityFormComponent } from '../lists/priority-list/priority.form';
 import { TypeFormComponent } from '../lists/type-list/types.form';
 import { StatusFormComponent } from '../lists/status-list/status.form';
 import { KanbanCloneComponent } from '../kanban-form/clone.form';
+import { TeamListComponent } from '../lists/team-list/team-list.component';
+import { TeamMemberFormComponent } from '../lists/team-list/member.form';
 
 const routes: Routes = [
   {
@@ -61,6 +63,8 @@ const routes: Routes = [
     TypeFormComponent,
     StatusFormComponent,
     KanbanCloneComponent,
+    TeamListComponent,
+    TeamMemberFormComponent,
   ],
   imports: [
     CommonModule,

@@ -1,51 +1,37 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { IMenuState } from './tasks.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class KanbanRefService {
   constructor() {}
-  partyRef: string;
-  clientRef: string;
-  partyType: string;
-  currentTabSelection: string;
 
-  public kanbanRefUpdated = new EventEmitter<any>();
+  menuState: IMenuState = { partyRef: 'COMP' };
 
-  setPartyRef(partyRef: string) {
-    this.partyRef = partyRef;
-    //  console.log ('set party ref ', partyRef);
-    this.kanbanRefUpdated.emit(this);
+  public kanbanRefUpdated = new Subject<IMenuState>();
+
+  public setPartyRef(partyRef: string) {
+    this.menuState.partyRef = partyRef;
+    this.kanbanRefUpdated.next(this.menuState);
   }
 
   public getPartyRef() {
-    return this.partyRef;
+    return this.menuState.partyRef;
   }
 
-  setCurrentTabSelection(currentTabSelection: string) {
-    this.currentTabSelection = currentTabSelection;
-    this.kanbanRefUpdated.emit(currentTabSelection);
+  public setPartyClient(clientRef: string) {
+    this.menuState.clientRef = clientRef;
+    this.kanbanRefUpdated.next(this.menuState);
   }
 
-  getCurrentTabSelection() {
-    return this.currentTabSelection;
+  public setPartyType(partyType: string) {
+    this.menuState.partyType = partyType;
+    this.kanbanRefUpdated.next(this.menuState);
   }
 
-  setPartyClient(clientRef: string) {
-    this.clientRef = clientRef;
-    this.kanbanRefUpdated.emit(this);
-  }
-
-  getClientRef() {
-    return this.partyRef;
-  }
-
-  setPartyType(partyType: string) {
-    this.partyType = partyType;
-    this.kanbanRefUpdated.emit(this);
-  }
-
-  getPartyType() {
-    return this.partyType;
+  setMenuState(menuState: IMenuState) {
+    this.menuState = menuState;
   }
 }

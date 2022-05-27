@@ -86,7 +86,7 @@ export class InstrTypeComponent extends BaseTypeComponent {
   }
 
   update(data) {
-    this.partyService.updatePartyByRef(data.party_ref, data);
+    this.partyService.(data.party_ref, data);
     this.updateData();
   }
 

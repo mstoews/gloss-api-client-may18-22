@@ -1,4 +1,11 @@
-import { Component, HostBinding, Input, OnInit, AfterContentInit, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnInit,
+  AfterContentInit,
+  AfterViewInit,
+} from '@angular/core';
 import { NavItem } from './nav-item';
 import { Router } from '@angular/router';
 import { NavService } from './nav-service';
@@ -20,7 +27,8 @@ import {
       state('expanded', style({ transform: 'rotate(180deg)' })),
       transition(
         'expanded <=> collapsed',
-        animate('1000ms cubic-bezier(0.4,0.0,0.2,1)')
+        // animate('1000ms cubic-bezier(0.4,0.0,0.2,1)')
+        animate('1000ms cubic-bezier(1,0.0,1,1)')
       ),
     ]),
   ],
@@ -40,22 +48,25 @@ export class NavItemComponent implements OnInit {
 
   ngOnInit() {
     this.navService.currentUrl.subscribe((url: string) => {
-      console.log (`Checking '${this.item.route}' against '${url}'`);
-      // if (this.item.route) {
-      //     const expand = url.indexOf(`${this.item.route}`);
-      //     if (expand === 0) {
-      //       this.expanded = false;
-      //     }
-      //     this.ariaExpanded = this.expanded;
-      //   }
+      if (url === null || url === undefined) {
+        this.expanded = false;
+      } else if (this.item.route) {
+        const expand = url.indexOf(`${this.item.route}`);
+        if (expand === 0) {
+          this.expanded = false;
+        }
+        this.ariaExpanded = this.expanded;
+      }
     });
     this.ariaExpanded = this.expanded;
-    }
+  }
 
   onItemSelected(item: NavItem) {
-    if (item.children && item.children.length) {
+    console.log('on selected ..');
+    if (item.parent) {
       this.expanded = !this.expanded;
     } else {
+      this.expanded = true;
       this.router.navigate([item.route]);
     }
   }

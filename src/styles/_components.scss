@@ -1,7 +1,10 @@
-
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42A948;
+  /* green */
 }
+
+
 
 
 .alert div {
@@ -53,7 +56,7 @@ select {
 
 .box {
   flex-grow: 1;
-  border: 3px solid rgba(0,0,0,.2);
+  border: 3px solid rgba(0, 0, 0, .2);
 }
 
 .mat-card-parent {
@@ -81,6 +84,7 @@ select {
   height: 3.25rem;
   margin-left: 2rem;
 }
+
 ////////////////////////////////////////
 // SIDE NAVIGATION
 .side-nav {
@@ -90,86 +94,86 @@ select {
   color: white;
 
   @media only screen and (max-width: $bp-medium) {
-      display: flex;
-      margin: 0;
-   }
-  
+    display: flex;
+    margin: 0;
+  }
+
   &__item {
-      position: relative;
+    position: relative;
 
-      &:not(:last-child) {
-          margin-bottom: .5rem;
-
-          @media only screen and (max-width: $bp-medium) {
-              margin: 0;
-          }
-      }
+    &:not(:last-child) {
+      margin-bottom: .5rem;
 
       @media only screen and (max-width: $bp-medium) {
-          flex: 1;
+        margin: 0;
       }
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
+    }
   }
 
   &__item::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 3px;
-      background-color: var(gray);
-      transform: scaleY(0);
-      transition: transform .2s,
-                  width .4s cubic-bezier(1,0,0,1) .2s,
-                  background-color .1s;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(gray);
+    transform: scaleY(0);
+    transition: transform .2s,
+      width .4s cubic-bezier(1, 0, 0, 1) .2s,
+      background-color .1s;
   }
 
   &__item:hover::before,
   &__item--active::before {
-      transform: scaleY(1);
-      width: 100%;
+    transform: scaleY(1);
+    width: 100%;
   }
 
   &__item:active::before {
-      background-color: var(--color-primary-light);
+    background-color: var(--color-primary-light);
   }
 
 
   &__link:link,
   &__link:visited {
-      color: var(--color-grey-light-1);
-      text-decoration: none;
-      text-transform: uppercase;
-      padding: 1.5rem 3rem;
-      position: relative;
-      z-index: 10;
+    color: var(--color-grey-light-1);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 3rem;
+    position: relative;
+    z-index: 10;
 
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
 
-      @media only screen and (max-width: $bp-medium) {
-          justify-content: center;
-          padding: 2rem;
-      }
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
 
-      @media only screen and (max-width: $bp-small) {
-          flex-direction: column;
-          padding: 1.5rem .5rem;
-      }
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.5rem .5rem;
+    }
   }
 
   &__icon {
-      width: 1.75rem;
-      height: 1.75rem;
-      margin-right: 2rem;
-      fill: currentColor;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor;
 
-      @media only screen and (max-width: $bp-large) {
-          margin-right: 0;
-          margin-bottom: .7rem;
-          width: 1.5rem;
-          height: 1.5rem;
-      }
+    @media only screen and (max-width: $bp-large) {
+      margin-right: 0;
+      margin-bottom: .7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 
@@ -182,7 +186,6 @@ select {
   padding: 2.5rem;
 
   @media only screen and (max-width: $bp-medium) {
-      display: none;
+    display: none;
   }
 }
-

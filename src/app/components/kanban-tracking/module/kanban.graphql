@@ -1,26 +1,25 @@
 fragment KanbanTask on kb_task {
-		party_ref
-    parentId
-    Id
-    assignee
-    due_date
-    start_date
-    description
-    dependencies
-    rankid
-    task_id
-    title
-    assignee
-    estimate
-    status
-    summary
-    classname
-    priority
-    type
-    color
-    tags
-    classname
-
+  party_ref
+  parentId
+  Id
+  assignee
+  due_date
+  start_date
+  description
+  dependencies
+  rankid
+  task_id
+  title
+  assignee
+  estimate
+  status
+  summary
+  classname
+  priority
+  type
+  color
+  tags
+  classname
 }
 
 query KanbanTasks {
@@ -47,7 +46,6 @@ query KanbanType {
   }
 }
 
-
 query KanbanStatus {
   KanbanStatus {
     status
@@ -57,80 +55,130 @@ query KanbanStatus {
   }
 }
 
-query KanbanTaskByTaskId ($task_id: String!){
-  KanbanByTaskId(task_id: $task_id){
+query KanbanTaskByTaskId($task_id: String!) {
+  KanbanByTaskId(task_id: $task_id) {
     ...KanbanTask
   }
 }
 
-query KanbanTaskByStatus ($status: String!)
-{
-  KanbanTaskByStatus(status: $status)
-  {
+query KanbanTaskByStatus($status: String!) {
+  KanbanTaskByStatus(status: $status) {
     ...KanbanTask
   }
 }
 
-
-
-query KanbanByTaskId($task_id: String!)
-{
-  KanbanByTaskId(task_id: $task_id)
-  {
+query KanbanByTaskId($task_id: String!) {
+  KanbanByTaskId(task_id: $task_id) {
     ...KanbanTask
   }
 }
 
-
-query KanbanTaskByRefAndStatus($partyRef: String!, $status: String!){
-  	KanbanTaskByRefAndStatus(partyRef: $partyRef, status: $status)
-    {
-    ...KanbanTask
-	}
-}
-
-
-query KanbanTaskByRef($party_ref: String!)
-{
-  KanbanTaskByRef(partyRef: $party_ref){
+query KanbanTaskByRefAndStatus($partyRef: String!, $status: String!) {
+  KanbanTaskByRefAndStatus(partyRef: $partyRef, status: $status) {
     ...KanbanTask
   }
 }
 
-query KanbanByStatus($status: String!){
-  KanbanTaskByStatus(status: $status){
+query KanbanTaskByRef($party_ref: String!) {
+  KanbanTaskByRef(partyRef: $party_ref) {
     ...KanbanTask
   }
 }
 
-mutation createKanbanTask ($taskInput: KanbanInputs!) {
+query KanbanByStatus($status: String!) {
+  KanbanTaskByStatus(status: $status) {
+    ...KanbanTask
+  }
+}
+
+mutation createKanbanTask($taskInput: KanbanInputs!) {
   createTask(data: $taskInput) {
     ...KanbanTask
   }
 }
 
-mutation UpdateTask($task_id: String!, $taskInput: KanbanInputs!){
-	updateTask(task_id: $task_id, newData: $taskInput)
-  {
+mutation UpdateTask($task_id: String!, $taskInput: KanbanInputs!) {
+  updateTask(task_id: $task_id, newData: $taskInput) {
     ...KanbanTask
   }
 }
 
-mutation deleteTask($task_id: String!){
-  deleteTask(task_id: $task_id){
+mutation deleteTask($task_id: String!) {
+  deleteTask(task_id: $task_id) {
     ...KanbanTask
   }
 }
 
-query KanbanFirstTask ($party_ref: String!)  {
-  KanbanFirstTask(party_ref: $party_ref){
+query KanbanFirstTask($party_ref: String!) {
+  KanbanFirstTask(party_ref: $party_ref) {
     ...KanbanTask
   }
 }
 
-mutation updateTaskParentId ($task_id: String!, $parentId: Int!){
-  updateTaskParentId(task_id: $task_id, parentId: $parentId){
+mutation updateTaskParentId($task_id: String!, $parentId: Int!) {
+  updateTaskParentId(task_id: $task_id, parentId: $parentId) {
     task_id
     parentId
+  }
+}
+
+query getPartyAssociationTypeByKey($key: String!) {
+  getPartyAssociationTypeByKey(key: $key) {
+    description
+    user_defined
+  }
+}
+
+query getAllPartyAssociationTypes {
+  getAllPartyAssociationsTypes {
+    description
+    user_defined
+  }
+}
+
+query getPartyFlagTypeByKey($flag: String!) {
+  getPartyFlagTypeByKey(key: $flag) {
+    description
+    user_defined
+  }
+}
+
+mutation addPartyFromXML($xml: String!) {
+  addPartyfromXML(xml: $xml)
+}
+
+query KanbanAssignee {
+  KanbanAssignee {
+    team_member
+    last_name
+    first_name
+    location
+    title
+  }
+}
+
+mutation createKanbanAssignee($data: TeamInputs!) {
+  createKanbanAssignee(data: $data) {
+    first_name
+  }
+}
+
+query getKanbanMemberById($team_member: String!) {
+  KanbanAssigneeById(team_member: $team_member) {
+    team_member
+    last_name
+    first_name
+    location
+    title
+  }
+}
+
+mutation updateKanbanMember($data: TeamInputs!, $team_member: String!) {
+  updateKanbanAssignee(team_member: $team_member, data: $data) {
+    team_member
+    last_name
+    first_name
+    location
+    title
   }
 }

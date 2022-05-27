@@ -3,6 +3,7 @@ import {
   Component,
   Inject,
   Input,
+  OnDestroy,
   OnInit,
   Optional,
 } from '@angular/core';
@@ -16,52 +17,19 @@ import {
 import moment from 'moment';
 import { Subject, Subscription } from 'rxjs';
 import { KanbanService } from '../module/kanban.service';
-
-interface IValue {
-  value: string;
-  viewValue: string;
-}
-
-interface IType {
-  type: string;
-  description: string;
-  updatedte: Date;
-  updateusr: string;
-}
-
-interface IPriority {
-  priority: string;
-  description: string;
-  updatedte: Date;
-  updateusr: string;
-}
-
-export interface IKanbanTask {
-  task_id: string;
-  party_ref: string;
-  title: string;
-  status: string;
-  summary: string;
-  type: IType[];
-  priority: IPriority[];
-  tags: string;
-  estimate: number;
-  assignee: string;
-  rankid: number;
-  color: IValue[];
-  classname: string;
-  description: string;
-  due_date: Date;
-  start_date: Date;
-  dependencies: string;
-}
+import {
+  IAssignee,
+  IKanbanTask,
+  IValue,
+  IPriority,
+} from '../module/tasks.model';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './kanban.task.form.html',
   styleUrls: ['./kanban.scss'],
 })
-export class KanbanTaskFormComponent implements OnInit {
+export class KanbanTaskFormComponent implements OnInit, OnDestroy {
   taskGroup: FormGroup;
   action: string;
   // tslint:disable-next-line: variable-name
@@ -73,9 +41,8 @@ export class KanbanTaskFormComponent implements OnInit {
   currentDate: Date;
   @Input() colorCode: string;
 
-  KbPriority: IPriority[];
   subType: Subscription;
-  subPriority: Subscription;
+
   private unsubscribeAll: Subject<any> = new Subject<any>();
 
   types: IValue[] = [
@@ -91,19 +58,15 @@ export class KanbanTaskFormComponent implements OnInit {
     { value: '#D2222D', viewValue: 'RED' },
   ];
 
-  priority: IValue[] = [
+  priorities: IValue[] = [
     { value: 'Critical', viewValue: 'CRITICAL' },
     { value: 'High', viewValue: 'HIGH' },
     { value: 'Medium', viewValue: 'MEDIUM' },
     { value: 'Low', viewValue: 'LOW' },
   ];
 
-  team: IValue[] = [
-    { value: '@ashley', viewValue: '@ashley' },
-    { value: '@hiroshi', viewValue: '@hiroshi' },
-    { value: '@kasi', viewValue: '@kasi' },
-    { value: '@arun', viewValue: '@arun' },
-  ];
+  subTeam: Subscription;
+  team: IAssignee[];
 
   constructor(
     public dialogRef: MatDialogRef<KanbanTaskFormComponent>,
@@ -113,6 +76,19 @@ export class KanbanTaskFormComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public task: IKanbanTask
   ) {
     this.createForm(task);
+  }
+
+  ngOnDestroy(): void {
+    this.subTeam.unsubscribe();
+  }
+
+  ngOnInit() {
+    this.taskGroup.valueChanges.subscribe((value) => {
+      this.changeDetectorRef.markForCheck();
+    });
+    this.subTeam = this.kanbanService
+      .getKanbanTeam()
+      .subscribe((teamMember) => (this.team = teamMember));
   }
 
   trackByFn(index: number, item: any): any {
@@ -128,70 +104,27 @@ export class KanbanTaskFormComponent implements OnInit {
 
   changePriority(data) {
     this.cPriority = data;
-    //  console.log (`Priority value changed : ${data}`);
   }
 
   changeRag(data) {
     this.cRAG = data;
-    //  console.log (`RAG value changed : ${data}`);
   }
 
   changeType(data) {
     this.cType = data;
-    //  console.log (`TYPE value changed : ${data}`);
-  }
-
-  ngOnInit() {
-    this.updatePriorityData();
-    this.taskGroup.valueChanges.subscribe((value) => {
-      //  console.log (`Value changed  ${value}, ${value.id}`);
-      this.changeDetectorRef.markForCheck();
-    });
-  }
-
-  OnDestroy() {
-    this.subType.unsubscribe();
-    this.subPriority.unsubscribe();
-  }
-
-  updatePriorityData() {
-    this.subPriority = this.kanbanService
-      .getKanbanPriorities()
-      .subscribe((priority) => (this.KbPriority = priority));
   }
 
   createForm(task: IKanbanTask) {
     this.sTitle = 'Kanban Task - ' + task.task_id;
-
     const dDate = new Date(task.due_date);
     const dueDate = dDate.toISOString().split('T')[0];
 
     const sDate = new Date(task.start_date);
     const startDate = sDate.toISOString().split('T')[0];
-    const pr = this.priority.find((x) => x.value === task.priority.toString());
-    if (task.color !== null && task.color !== undefined) {
-      const rag = this.rag.find((x) => x.value === task.color.toString());
-      if (rag === undefined) {
-        this.cRAG = '#238823';
-      } else {
-        this.cRAG = rag.value;
-      }
-    } else {
-      this.cRAG = '#238823';
-    }
-    const types = this.types.find((x) => x.value === task.type.toString());
 
-    if (pr === undefined) {
-      this.cPriority = 'MEDIUM';
-    } else {
-      this.cPriority = pr.value;
-    }
-
-    if (types === undefined) {
-      this.cType = 'add';
-    } else {
-      this.cType = types.value;
-    }
+    this.assignPriority(task);
+    this.assignType(task);
+    this.assignRag(task);
 
     this.taskGroup = this.fb.group({
       task_id: [task.task_id],
@@ -211,6 +144,47 @@ export class KanbanTaskFormComponent implements OnInit {
       start_date: [startDate],
       dependencies: [task.dependencies],
     });
+  }
+
+  private assignRag(task: IKanbanTask) {
+    if (task.type !== null && task.type !== undefined) {
+      const type = this.types.find((x) => x.value === task.type.toString());
+      if (type === undefined) {
+        this.cType = 'ADD';
+      } else {
+        this.cType = type.value;
+      }
+    } else {
+      this.cType = 'ADD';
+    }
+  }
+
+  private assignType(task: IKanbanTask) {
+    if (task.color !== null && task.color !== undefined) {
+      const rag = this.rag.find((x) => x.value === task.color.toString());
+      if (rag === undefined) {
+        this.cRAG = '#238823';
+      } else {
+        this.cRAG = rag.value;
+      }
+    } else {
+      this.cRAG = '#238823';
+    }
+  }
+
+  private assignPriority(task: IKanbanTask) {
+    if (this.priorities !== undefined) {
+      const priority = this.priorities.find(
+        (x) => x.value === task.priority.toString()
+      );
+      if (priority !== undefined) {
+        this.cPriority = priority.value;
+      } else {
+        this.cPriority = 'MEDIUM';
+      }
+    } else {
+      this.cPriority = 'MEDIUM';
+    }
   }
 
   onCreate(data) {

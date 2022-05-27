@@ -77,7 +77,7 @@ export class PartyTypeComponent implements OnInit {
         this.updateData();
       },
       (error) => {
-        //  console.log (error.message);
+        console.log(error.message);
       }
     );
   }

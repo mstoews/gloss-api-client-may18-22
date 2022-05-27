@@ -11,18 +11,15 @@ export class NavService {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl.next(event.urlAfterRedirects);
-        //  console.log ('Constructor of navService', this.currentUrl);
       }
     });
   }
 
   public closeNav() {
-    //  console.log ('closeNav');
     this.appDrawer.close();
   }
 
   public openNav() {
-    //  console.log ('openNav');
     this.appDrawer.open();
   }
 }
