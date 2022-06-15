@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import * as glossApi from 'app/services/api.service';
 import { ITask } from './tasks.model';
 import { KanbanAssigneeGQL } from '../../../services/api.service';
+import { PartyService } from 'app/services/party.service';
+import { stripIgnoredCharacters } from 'graphql';
 
 export type TaskArray = {
   tasks: ITask[];
@@ -38,7 +40,9 @@ export class KanbanService {
     private readonly kanbanTaskByTaskId: glossApi.KanbanTaskByTaskIdGQL,
     private readonly updateTaskParentId: glossApi.UpdateTaskParentIdGQL,
     private readonly partyByTypeGQL: glossApi.PartyByTypeGQL,
-    private readonly kanbanAssigneeGQL: KanbanAssigneeGQL
+    private readonly kanbanAssigneeGQL: KanbanAssigneeGQL,
+    private readonly partyService: PartyService,
+
   ) {}
 
   // tslint:disable-next-line:variable-name
@@ -57,6 +61,17 @@ export class KanbanService {
       .watch({ party_type: partyType, client_ref: clientRef })
       .valueChanges.pipe(map((result) => result.data.partyByType));
   }
+
+  public getFirstPartyRef(partyType: string ): string {
+    let partyRef = '';
+    const party$ = this.partyService.getFirstPartyByType(partyType);
+    party$.subscribe((data: any) => {
+      console.log ('OnFirstPartyType:', data.party_ref);
+      partyRef = data.party_ref;
+    });
+    return partyRef;
+  }
+
 
   /// Assignee
   public getKanbanTeam() {

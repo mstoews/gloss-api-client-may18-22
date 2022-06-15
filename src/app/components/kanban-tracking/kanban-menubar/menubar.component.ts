@@ -54,6 +54,11 @@ export class KanbanMenubarComponent implements OnInit {
             menuDesc: element.party_long_name,
             viewValue: element.party_ref,
           };
+          if (count === 1){
+            this.inPartyRef = element.party_ref;
+            this.partyMenu$.setPartyRef(element.party_ref);
+            this.onRefreshPartyRef(this.inPartyRef);
+          }
           count++;
         });
       },
@@ -64,7 +69,6 @@ export class KanbanMenubarComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   onRefreshPartyRef(party_ref: string): void {
     this.kanbanRefService.setPartyRef(party_ref);
-    this.inPartyRef = party_ref;
     this.onRefresh();
   }
 

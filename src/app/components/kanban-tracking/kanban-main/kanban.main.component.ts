@@ -94,13 +94,13 @@ export class KanbanMainComponent implements OnInit {
       },
       error: (err) => console.log(err.message),
     });
-    this.partyService.getFirstPartyByType('COMP').subscribe({
+    this.partyService.getFirstPartyByType(this.outTitle).subscribe({
       next: (val) => {
         this.partyRef = val.party_ref;
         const menuState = {
           partyRef: val.party_ref,
           partyClient: localStorage.getItem('CLIENT'),
-          partyType: 'COMP',
+          partyType: val.party_type,
         };
         this.kanbanRefService.setMenuState(menuState);
       },

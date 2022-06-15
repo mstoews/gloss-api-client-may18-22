@@ -1,11 +1,11 @@
 * {
   margin: 0px;
-
 }
 
 .menu-button {
   transition: all 1s ease-out !important;
 }
+
 .clicked {
   transform: rotate(180deg)
 }
@@ -25,7 +25,6 @@
   font-size: large;
   width: 100%;
 }
-
 
 .flex-header {
   background-color: var(--color-primary-dark);
@@ -102,21 +101,22 @@
 
 // keyframes are not used right now but could be good for animating the sliding of the drawers more effectively
 
+
 @keyframes rotate {
   0% {
-    transform: translate(0, 0) scale(1) rotateY(0deg);
+    transform: translate(0, 0) scale(.5) rotateY(0deg);
   }
   25% {
-    transform: translate(0, 0) scale(1) rotateY(90deg);
+    transform: translate(0, 0) scale(.5) rotateY(90deg);
   }
   50% {
-    transform: translate( 0, 0 ) scale(1) rotateY(180deg);
+    transform: translate( 0, 0 ) scale(.5) rotateY(180deg);
   }
   75% {
-    transform: translate(0,0) scale(1) rotateY(270deg);
+    transform: translate(0,0) scale(.5) rotateY(270deg);
   }
   100% {
-    transform: translate(0,0) scale(1) rotateY(360deg);
+    transform: translate(0,0) scale(.5) rotateY(360deg);
   }
 }
 

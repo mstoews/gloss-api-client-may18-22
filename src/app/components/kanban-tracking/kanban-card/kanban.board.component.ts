@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 import { KanbanRefService } from '../module/kanban-party-ref.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { IMenuState } from '../module/tasks.model';
+import { PartyRefService } from '../../../services/partyRef.service';
 
 @Component({
   selector: 'app-kanban-board',
@@ -37,7 +38,9 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
     public kanbanService: KanbanService,
     public kanbanRefService: KanbanRefService,
     private router: Router
-  ) {}
+  ) {
+
+  }
 
   // notify
   @Output() notifyUpdateTaskData: EventEmitter<ITask> = new EventEmitter();
@@ -72,7 +75,11 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
   @ViewChild('drawer') public sidenav: MatSidenav;
 
   ngOnInit(): void {
-    //  console.log ('Refreshing KanbanBoard ... ngOnInit', this.partyRef);
+    if (this.partyRef === undefined) {
+      this.onInitGetKanbanByType('COMP');
+    } else {
+      this.refreshData(this.partyRef);
+    }
     this.igMenuChanged = this.kanbanRefService.kanbanRefUpdated.subscribe(
       (menuState: IMenuState) => {
         this.partyRef = menuState.partyRef;
@@ -80,11 +87,6 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
         this.refreshData(this.partyRef);
       }
     );
-    if (this.partyRef === undefined) {
-      this.onInitGetKanbanByType('COMP');
-    } else {
-      this.refreshData(this.partyRef);
-    }
   }
 
   onModifyTaskDialog(data: ITask) {
@@ -150,13 +152,15 @@ export class KanbanBoardComponent implements OnInit, OnDestroy {
   }
 
   onInitGetKanbanByType(partyType: string) {
-    this.partyService.getFirstPartyByType(partyType).subscribe((val) => {
-      if (this.partyRef === undefined) {
-        this.partyRef = val.party_ref;
-        this.kanbanRefService.setPartyRef(val.party_ref);
-      }
-      this.refreshData(this.partyRef);
-    });
+    this.partyRef = this.kanbanRefService.getPartyRef();
+    if (this.partyRef === undefined || this.partyRef === '' || this.partyRef === null) {
+        this.partyRef = this.getFirstPartyRefByType(partyType);
+    }
+    this.refreshData(this.partyRef);
+  }
+
+  getFirstPartyRefByType(partyType: string): string  {
+    return this.kanbanService.getFirstPartyRef(partyType);
   }
 
   public refreshData(partyRef: string) {

@@ -4,7 +4,6 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json ./
 RUN npm install 
-COPY dx.material.broadridge.css ./node_modules/devextreme/dist/css
 
 # Copy local nuxt code to the container
 COPY . .

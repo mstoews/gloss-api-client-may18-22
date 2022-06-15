@@ -10,7 +10,8 @@
         <mat-drawer-content class="flex flex-col">
 
 
-            <app-kanban-menubar class="flex-header" (notifyParentRefresh)="onRefresh()"
+            <app-kanban-menubar 
+            class="flex-header" (notifyParentRefresh)="onRefresh()"
                 (notifyMenuItemChanged)="onMenuItemChanged($event)" (notifyParentAdd)="onAdd()"
                 (notifyParentClone)="onClone()" inTitle={{outTitle}} inPartyRef={{outPartyRef}}>
             </app-kanban-menubar>

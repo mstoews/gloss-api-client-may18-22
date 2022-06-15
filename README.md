@@ -1,4 +1,4 @@
-# Client API
+npm # Client API
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@
 - To test the connection open the file '.env' and connect to the URL listed there. Paste the IRL into any browser.
 - If the server is not running please check the gloss-api-backend startup.
 
-```bash
+```b=
 npm install
 npm install @angular/cli
 ng s --port 4310 -o

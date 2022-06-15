@@ -67,6 +67,28 @@ export interface IPriority {
   updateusr: string;
 }
 
+export class KanbanTask {
+  constructor(
+    task_id: string,
+    party_ref: string,
+    title: string,
+    status: string,
+    summary: string,
+    type: string,
+    priority: string,
+    tags: string,
+    estimate: number,
+    assignee: string,
+    rankid: number,
+    color: string,
+    classname: string,
+    description: string,
+    due_date: Date,
+    start_date: Date,
+    dependencies: string
+  ){}
+}
+
 export interface IKanbanTask {
   task_id: string;
   party_ref: string;

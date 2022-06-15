@@ -9,6 +9,7 @@ import {
 import { NavItem } from './nav-item';
 import { Router } from '@angular/router';
 import { NavService } from './nav-service';
+import { slideStateTrigger, sideNavTrigger } from '../../animations';
 import {
   animate,
   state,
@@ -21,24 +22,17 @@ import {
   selector: 'app-nav-list-item',
   templateUrl: './nav-item.component.html',
   styleUrls: ['./nav-item.component.scss'],
-  animations: [
-    trigger('indicatorRotate', [
-      state('collapsed', style({ transform: 'rotate(0deg)' })),
-      state('expanded', style({ transform: 'rotate(180deg)' })),
-      transition(
-        'expanded <=> collapsed',
-        // animate('1000ms cubic-bezier(0.4,0.0,0.2,1)')
-        animate('1000ms cubic-bezier(1,0.0,1,1)')
-      ),
-    ]),
-  ],
+  animations: [slideStateTrigger, sideNavTrigger],
 })
 export class NavItemComponent implements OnInit {
   public expanded!: boolean;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
+  @HostBinding('@slideState') routeAnimation = true;
+  @HostBinding('@sideNavigationState') navigationAnimation = true;
   @Input() item: NavItem;
   @Input() depth: number;
   private noMenuUpdate = true;
+  public isClicked = false;
 
   constructor(public navService: NavService, public router: Router) {
     if (this.depth === undefined) {

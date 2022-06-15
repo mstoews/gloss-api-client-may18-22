@@ -181,7 +181,7 @@ export class StaticSidebarComponent implements OnInit {
       displayName: 'TE',
       iconName: 'heroicons_outline:adjustments',
       route: '/static/tetemplate',
-      parent: true,
+      parent: false,
       children: [],
     },
   ];

@@ -5,7 +5,7 @@
   width: 100%;
 
   .mat-list-item {
-    color: white;
+    color: rgb(216, 212, 212);
     font-size: 1.4rem;
   }
   .mat-list-item.active {
@@ -35,3 +35,21 @@ a:hover {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2a9e5', endColorstr='#2b94e5',GradientType=1 );
 }
 
+.fill-space {
+  flex: 1 1 auto;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(0, 0) scale(1) rotateY(0deg);
+  }
+  33% {
+    transform: translate(0, 0) scale(1) rotateY(15deg);
+  }
+  33% {
+    transform: translate( 0, 0 ) scale(1) rotateY(30deg);
+  }
+  100% {
+    transform: translate(0,0) scale(1) rotateY(45deg);
+  }
+}

@@ -8,7 +8,10 @@ import { IMenuState } from './tasks.model';
 export class KanbanRefService {
   constructor() {}
 
-  menuState: IMenuState = { partyRef: 'COMP' };
+  menuState: IMenuState = { 
+    partyRef: '',
+    partyType: 'COMP',
+    clientRef: '' };
 
   public kanbanRefUpdated = new Subject<IMenuState>();
 
